@@ -1,0 +1,22 @@
+{
+  "name": "metadata",
+  "version": "0.1.0",
+  "description": "hypercerts metadata validator and uploader",
+  "main": "lib/src/index.js",
+  "typings": "lib/src/index.d.ts",
+  "author": "Network Goods",
+  "license": "MIT",
+  "dependencies": {
+    "@types/node": "^18.11.10",
+    "loglevel": "^1.8.1",
+    "schema-to-yup": "^1.12.8",
+    "yup": "^0.32.11"
+  },
+  "devDependencies": {
+    "typescript": "^4.9.3"
+  },
+  "scripts": {
+    "tsc": "tsc",
+    "test": "echo \"Error: No tests\" && exit 1"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "hypercerts-sdk",
+  "version": "0.1.0",
+  "description": "SDK for Hypercert protocol",
+  "main": "index.js",
+  "repository": "git@github.com:Network-Goods/hypercerts-sdk.git",
+  "author": "bitbeckers <code@bitbeckers.com>",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "lerna": "^6.1.0",
+    "typescript": "^4.9.3"
+  },
+  "workspaces": [
+    "packages/*"
+  ]
+}
