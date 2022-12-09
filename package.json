@@ -1,10 +1,10 @@
 {
-  "name": "hypercerts-sdk",
-  "version": "0.1.0",
-  "description": "SDK for Hypercert protocol",
+  "name": "@network-goods/hypercerts-sdk",
+  "version": "0.0.1",
+  "description": "SDK for hypercerts protocol",
   "main": "index.js",
   "repository": "git@github.com:Network-Goods/hypercerts-sdk.git",
-  "author": "bitbeckers <code@bitbeckers.com>",
+  "author": "Network Goods",
   "license": "MIT",
   "private": true,
   "devDependencies": {

@@ -1,0 +1,5 @@
+sources:
+  - name: hypercerts-dev
+    handler:
+      graphql:
+        endpoint: https://api.thegraph.com/subgraphs/name/bitbeckers/hypercerts-dev
