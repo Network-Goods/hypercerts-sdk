@@ -2581,10 +2581,10 @@
   "resolved" "https://registry.npmjs.org/@types/mocha/-/mocha-10.0.1.tgz"
   "version" "10.0.1"
 
-"@types/node@*", "@types/node@^18.0.6", "@types/node@^18.11.10", "@types/node@^18.11.12", "@types/node@>=13", "@types/node@>=13.7.0":
-  "integrity" "sha512-FgD3NtTAKvyMmD44T07zz2fEf+OKwutgBCEVM8GcvMGVGaDktiLNTDvPwC/LUe3PinMW+X6CuLOF2Ui1mAlSXg=="
-  "resolved" "https://registry.npmjs.org/@types/node/-/node-18.11.12.tgz"
-  "version" "18.11.12"
+"@types/node@*", "@types/node@^18.0.6", "@types/node@^18.11.10", "@types/node@^18.11.12", "@types/node@^18.11.15", "@types/node@>=13", "@types/node@>=13.7.0":
+  "integrity" "sha512-VkhBbVo2+2oozlkdHXLrb3zjsRkpdnaU2bXmX8Wgle3PUi569eLRaHGlgETQHR7lLL1w7GiG3h9SnePhxNDecw=="
+  "resolved" "https://registry.npmjs.org/@types/node/-/node-18.11.15.tgz"
+  "version" "18.11.15"
 
 "@types/node@^16.7.10":
   "integrity" "sha512-SghuoXv8ghvkrKjTyvhRTeNzivPzGQ8pe09PPGdyqsExiKvBYV/6E3imvjsaJuW8ca61qQN2+SoSzyEHS9r2LA=="
@@ -5229,7 +5229,7 @@
   "resolved" "https://registry.npmjs.org/ipaddr.js/-/ipaddr.js-1.9.1.tgz"
   "version" "1.9.1"
 
-"ipfs-client@file:/Users/ken/dev/hypercerts-sdk/packages/ipfs-client":
+"ipfs-client@^0.0.1", "ipfs-client@file:/Users/ken/dev/hypercerts-sdk/packages/ipfs-client":
   "resolved" "file:packages/ipfs-client"
   "version" "0.0.1"
   dependencies:
@@ -6186,7 +6186,7 @@
   "resolved" "https://registry.npmjs.org/meros/-/meros-1.2.1.tgz"
   "version" "1.2.1"
 
-"metadata@file:/Users/ken/dev/hypercerts-sdk/packages/metadata":
+"metadata@^0.0.1", "metadata@file:/Users/ken/dev/hypercerts-sdk/packages/metadata":
   "resolved" "file:packages/metadata"
   "version" "0.0.1"
   dependencies:
@@ -7868,6 +7868,12 @@
   "integrity" "sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg=="
   "resolved" "https://registry.npmjs.org/safer-buffer/-/safer-buffer-2.1.2.tgz"
   "version" "2.1.2"
+
+"sdk@file:/Users/ken/dev/hypercerts-sdk/packages/sdk":
+  "resolved" "file:packages/sdk"
+  "version" "0.0.1"
+  dependencies:
+    "metadata" "^0.0.1"
 
 "semver@^5.6.0":
   "integrity" "sha512-sauaDf/PZdVgrLTNYHRtpXa1iRiKcaebiKQ1BJdpQlWH2lCvexQdX55snPFyK7QzpudqbCI0qXFfOasHdyNDGQ=="
