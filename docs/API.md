@@ -2,11 +2,28 @@
 
 `mint(HypercertMetadata claimData, BigNumberish totalUnits)`
 
+- Validates the `claimData`
+- Stores metadata on IPFS
+- Uses CID to mint hypercert token with `totalUnits`
+
 `mint(HypercertMetadata claimData, BigNumberish[] units)`
 
-`split(string account, string tokenID, BigNumberish[] units)`
+- Validates the `claimData`
+- Stores metadata on IPFS
+- Uses CID to mint hypercert token with fractions equal to `units`
 
-`merge(string[] tokenIDs)`
+`splitValue(string account, string tokenID, BigNumberish[] units)`
+
+- Splits token with `tokenID` into fractions equal to `units`
+- Updated metadata?
+
+`mergeValue(string[] tokenIDs)`
+
+- Merges tokens in `tokenIDs`.
+- Burns tokens left without value
 
 `burn(string tokenID)`
 
+- Updates metadata in IPFS to represent burned state
+- Store updated metadata in token at `tokenID`
+- Burn token at `tokenID`
