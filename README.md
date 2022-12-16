@@ -27,10 +27,6 @@ Metadata validator/generator/uploader
 
 GraphQL client for Hypercerts with predefined queries and client
 
-### IPFS Client
-
-IPFS client for Hypercerts for CRU operations
-
 ### Types
 
 - Contracts
