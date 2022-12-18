@@ -27,29 +27,3 @@ export interface HypercertMetadata {
   ref?: string;
   properties: HypercertClaimdata;
 }
-/**
- * Properties of an impact claim
- */
-export interface HypercertClaimdata {
-  /**
-   * Scopes of impact
-   */
-  impactScopes: string;
-  /**
-   * Scopes of work
-   */
-  workScopes: string;
-  /**
-   * Describes the asset to which this token represents
-   */
-  impactTimeframe: number[];
-  /**
-   * Describes the asset to which this token represents
-   */
-  workTimeframe: number[];
-  /**
-   * Describes the asset to which this token represents
-   */
-  contributors: string[];
-  [k: string]: unknown;
-}

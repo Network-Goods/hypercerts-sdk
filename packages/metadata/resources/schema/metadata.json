@@ -1,4 +1,5 @@
 {
+  "$id": "schema/metadata.json",
   "title": "Hypercert metadata",
   "description": "Claim data for hypercert. ERC1155 Metadata compliant",
   "type": "object",
@@ -20,7 +21,7 @@
       "description": "Describes the asset to which this token represents"
     },
     "properties": {
-      "$ref": "./resources/schema/claimdata.json"
+      "$ref": "claimdata.json#"
     }
   },
   "additionalProperties": false,

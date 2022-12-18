@@ -1,6 +1,6 @@
 # API Documentation
 
-`mint(HypercertMetadata claimData, BigNumberish totalUnits)`
+`mintHypercertToken(HypercertMetadata claimData, BigNumberish totalUnits)`
 
 - Validates the `claimData`
 - Stores metadata on IPFS

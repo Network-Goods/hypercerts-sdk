@@ -13,18 +13,3 @@
   "exclude": ["resources", "test"]
 }
 
-// {
-//   "extends": "../../tsconfig.json",
-//   "compilerOptions": {
-//     "target": "es6",
-//     "lib": ["es2020", "dom"],
-//     "module": "commonjs",
-//     "declaration": true,
-//     "strict": true,
-//     "esModuleInterop": true,
-//     "skipLibCheck": true,
-//     "outDir": "./lib"
-//   },
-//   "include": ["src", "../metadata/src/utils"],
-//   "exclude": ["node_modules"]
-// }
