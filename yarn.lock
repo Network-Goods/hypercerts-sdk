@@ -544,10 +544,10 @@
     call-me-maybe "^1.0.1"
     js-yaml "^4.1.0"
 
-"@bitbeckers/hypercerts-protocol@^0.0.3":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@bitbeckers/hypercerts-protocol/-/hypercerts-protocol-0.0.3.tgz#c95eafd95b954c52741820099017f9595d95a644"
-  integrity sha512-ADpMVqfdYT9Lg6tBRn7c2d5VWfosf+LDtZ5zaBmrZ/aUjqYWfhjGJvqhoZCfWtuJERJTu1dnPTC6jCdJxdgYoA==
+"@bitbeckers/hypercerts-protocol@^0.0.5":
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/@bitbeckers/hypercerts-protocol/-/hypercerts-protocol-0.0.5.tgz#619ca00dc29175adf0092fb8c7e03e55592323c7"
+  integrity sha512-XT8sAdqy1CJoddUofaVG8IuItcpcfrFYeXR7Lb677uQGBnz1O1hGlr24Z4A8qSOzQIafR8IyMWEH2gftMSQlUA==
 
 "@chainsafe/is-ip@^2.0.1":
   version "2.0.1"
@@ -3944,7 +3944,7 @@
     "@types/dns-packet" "*"
     "@types/node" "*"
 
-"@types/node@*", "@types/node@>=13.7.0", "@types/node@^18.0.0", "@types/node@^18.11.10", "@types/node@^18.11.12", "@types/node@^18.11.15", "@types/node@^18.11.17":
+"@types/node@*", "@types/node@>=13.7.0", "@types/node@^18.0.0", "@types/node@^18.11.10", "@types/node@^18.11.15", "@types/node@^18.11.17":
   version "18.11.17"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-18.11.17.tgz#5c009e1d9c38f4a2a9d45c0b0c493fe6cdb4bcb5"
   integrity sha512-HJSUJmni4BeDHhfzn6nF0sVmd1SMezP7/4F0Lq+aXzmp2xm9O7WXrUtHW/CHlYVtZUbByEvWidHqRtcJXGF2Ng==
@@ -6571,11 +6571,6 @@ graphql-yoga@3.1.1:
   version "15.8.0"
   resolved "https://registry.yarnpkg.com/graphql/-/graphql-15.8.0.tgz#33410e96b012fa3bdb1091cc99a94769db212b38"
   integrity sha512-5gghUc24tP9HRznNpV2+FIoq3xKkj5dTQqf4v0CpdPbFVwFkWoxOM+o+2OC9ZSvjEMTjfmG9QT+gcvggTwW1zw==
-
-graphql@^16.6.0:
-  version "16.6.0"
-  resolved "https://registry.yarnpkg.com/graphql/-/graphql-16.6.0.tgz#c2dcffa4649db149f6282af726c8c83f1c7c5fdb"
-  integrity sha512-KPIBPDlW7NxrbT/eh4qPXz5FiFdL5UbaA0XUNz2Rp3Z3hqBSkbj0GVjwFDztsWVauZUWsbKHgMg++sk8UX0bkw==
 
 hamt-sharding@^3.0.0:
   version "3.0.2"
