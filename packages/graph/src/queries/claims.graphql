@@ -1,0 +1,15 @@
+query ClaimsByOwner($owner: Bytes = "") {
+  claims(first: 10, where: { owner: $owner }) {
+    owner
+    totalUnits
+    uri
+  }
+}
+
+query FirstClaims {
+  claims(first: 100) {
+    owner
+    totalUnits
+    uri
+  }
+}
