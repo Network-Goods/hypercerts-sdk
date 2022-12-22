@@ -4,6 +4,5 @@
     "declaration": true,
     "outDir": "./lib"
   },
-  "include": ["src", "types"],
-  "exclude": ["resources", "test"]
+  "include": ["src"]
 }

@@ -1,18 +1,19 @@
 {
-  "name": "contracts",
+  "name": "@network-goods/hypercerts-sdk",
   "version": "0.0.1",
-  "description": "manages and exposes contract abis and types",
-  "main": "lib/src/index.js",
-  "typings": "lib/src/index.d.ts",
+  "description": "Hypercerts SDK kit",
+  "main": "index.js",
   "repository": "git@github.com:Network-Goods/hypercerts-sdk.git",
   "author": "Network Goods",
   "license": "MIT",
   "private": true,
   "devDependencies": {
-    "@types/node": "^18.11.12",
+    "@types/node": "^18.11.15",
     "typescript": "^4.9.4"
   },
   "dependencies": {
-    "@bitbeckers/hypercerts-protocol": "^0.0.3"
+    "@bitbeckers/hypercerts-protocol": "^0.0.3",
+    "ethers": "^5.7.2",
+    "metadata": "^0.0.1"
   }
 }
