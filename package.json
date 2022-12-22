@@ -6,7 +6,6 @@
   "repository": "git@github.com:Network-Goods/hypercerts-sdk.git",
   "author": "Network Goods",
   "license": "MIT",
-  "private": true,
   "typedocMain": "src/index.ts",
   "devDependencies": {
     "lerna": "^6.1.0",
