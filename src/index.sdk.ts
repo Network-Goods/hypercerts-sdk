@@ -1,7 +1,10 @@
 import { mintHypercertToken } from "./minting";
-import { getMetadata, metadataValidator, claimdataValidator } from "metadata";
 import { HypercertMinter, HypercertMinterABI } from "@bitbeckers/hypercerts-protocol";
-import { execute, firstClaims, claimsByOwner, fractionsByOwner } from "graph";
+import { getMetadata } from "./operator";
+import { execute } from "../.graphclient";
+import { claimsByOwner, firstClaims } from "./claims";
+import { fractionsByOwner } from "./fractions";
+import { claimdataValidator, metadataValidator } from "./validator";
 
 // Queries
 export { getMetadata }; //metadata package

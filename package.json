@@ -2,16 +2,71 @@
   "name": "@network-goods/hypercerts-sdk",
   "version": "0.0.1",
   "description": "SDK for hypercerts protocol",
-  "main": "index.js",
   "repository": "git@github.com:Network-Goods/hypercerts-sdk.git",
   "author": "Network Goods",
   "license": "MIT",
   "typedocMain": "src/index.ts",
-  "devDependencies": {
-    "lerna": "^6.1.0",
-    "typescript": "^4.9.3"
+  "private": true,
+  "main": "./lib/cjs/src/index.js",
+  "files": [
+    "lib/**/*"
+  ],
+  "dependencies": {
+    "ajv": "^8.11.2",
+    "ipfs-core": "^0.17.0",
+    "ipfs-http-client": "56.0.2",
+    "loglevel": "^1.8.1",
+    "ts-mocha": "^10.0.0",
+    "ethers": "^5.7.2",
+    "@bitbeckers/hypercerts-protocol": "0.0.5"
   },
-  "workspaces": [
-    "packages/*"
-  ]
+  "devDependencies": {
+    "@types/chai": "^4.3.4",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "^18.11.17",
+    "chai": "^4.3.7",
+    "it-all": "^2.0.0",
+    "json-schema-to-typescript": "^11.0.2",
+    "mocha": "^10.1.0",
+    "mockipfs": "^0.3.0",
+    "mockttp": "^3.6.1",
+    "nyc": "^15.1.0",
+    "shx": "^0.3.4",
+    "ts-mocha": "^10.0.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.3",
+    "@graphprotocol/client-cli": "^2.2.15"
+  },
+  "scripts": {
+    "metadata:build": "yarn types:json && tsc && yarn copy-types",
+    "metadata:coverage": "nyc yarn test",
+    "metadata:copy-types": "shx cp -r types lib/types",
+    "metadata:tsc": "tsc",
+    "metadata:test": "ts-mocha 'test/**/*.ts'",
+    "metadata:types:json": "yarn run json2ts -i 'resources/schema/' -o 'types' --cwd 'resources/schema' --no-declareExternallyReferenced",
+    "graph:build": "yarn build:client && tsc",
+    "graph:build:client": "graphclient build",
+    "graph:compile": "graphql-codegen",
+    "graph:serve": "graphclient serve-dev",
+    "graph:tsc": "tsc",
+    "graph:test": "echo \"Error: No tests\" && exit 1",
+    "graph:watch": "graphql-codegen -w",
+    "clean": "rm -rf ./lib",
+    "build": "npm run clean && npm run build:esm && npm run build:cjs",
+    "build:esm": "tsc -p ./tsconfig.esm.json && mv ./lib/esm/src/index.js ./lib/esm/src/index.mjs",
+    "build:cjs": "tsc -p ./tsconfig.cjs.json",
+    "prepack": "npm run build"
+  },
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./lib/esm/types/src/index.d.ts",
+        "default": "./lib/esm/src/index.mjs"
+      },
+      "require": {
+        "types": "./lib/cjs/types/src/index.d.ts",
+        "default": "./lib/cjs/src/index.js"
+      }
+    }
+  }
 }

@@ -10,7 +10,7 @@
 
 ## Interface
 
-[API documentation]('/docs/API.md')
+[API documentation](/docs/API.md)
 [Graph playground](https://thegraph.com/hosted-service/subgraph/bitbeckers/hypercerts-dev)
 
 ## Packages
@@ -32,3 +32,11 @@ GraphQL client for Hypercerts with predefined queries and client
 - Contracts
 - Graph entities
 - Hypercert domain
+
+
+-- to be rewritten:
+* Example metadata schema's
+* Yup validation
+
+
+Wrapper for [Graph-client](https://github.com/graphprotocol/graph-client)

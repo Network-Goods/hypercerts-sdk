@@ -1,1 +1,0 @@
-Wrapper for [Graph-client](https://github.com/graphprotocol/graph-client)
