@@ -1,7 +1,7 @@
-import { metadataValidator, claimdataValidator } from "./validator";
+import { validateMetaData, validateClaimData } from "./validator";
 import { storeMetadata, getMetadata } from "./operator";
 
-export { metadataValidator, claimdataValidator, storeMetadata, getMetadata };
+export { validateMetaData, validateClaimData, storeMetadata, getMetadata };
 
 import { execute } from "../.graphclient";
 import { claimsByOwner, firstClaims } from "./claims";

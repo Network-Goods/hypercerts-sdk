@@ -1,17 +1,17 @@
 import Ajv from "ajv";
-import metadata from "../../resources/schema/metadata.json";
-import claimdata from "../../resources/schema/claimdata.json";
+import metaData from "../../resources/schema/metadata.json";
+import claimData from "../../resources/schema/claimdata.json";
 
 import { HypercertMetadata } from "../../types/metadata";
 import { HypercertClaimdata } from "../../types/claimdata";
 
 const ajv = new Ajv(); // options can be passed, e.g. {allErrors: true}
-ajv.addSchema(metadata, "metadata");
-ajv.addSchema(claimdata, "claimdata");
+ajv.addSchema(metaData, "metaData");
+ajv.addSchema(claimData, "claimData");
 
 // TODO error logging and handling
-const metadataValidator = (data: HypercertMetadata) => {
-  let validate = ajv.getSchema("metadata");
+const validateMetaData = (data: HypercertMetadata) => {
+  let validate = ajv.getSchema("metaData");
   if (!validate) {
     return false;
   }
@@ -26,8 +26,8 @@ const metadataValidator = (data: HypercertMetadata) => {
   }
 };
 
-const claimdataValidator = (data: HypercertClaimdata) => {
-  let validate = ajv.getSchema("claimdata");
+const validateClaimData = (data: HypercertClaimdata) => {
+  let validate = ajv.getSchema("claimData");
   if (!validate) {
     return false;
   }
@@ -42,4 +42,4 @@ const claimdataValidator = (data: HypercertClaimdata) => {
   }
 };
 
-export { metadataValidator, claimdataValidator };
+export { validateMetaData, validateClaimData };

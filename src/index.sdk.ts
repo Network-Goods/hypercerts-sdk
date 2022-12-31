@@ -4,7 +4,7 @@ import { getMetadata } from "./operator";
 import { execute } from "../.graphclient";
 import { claimsByOwner, firstClaims } from "./claims";
 import { fractionsByOwner } from "./fractions";
-import { claimdataValidator, metadataValidator } from "./validator";
+import { validateClaimData, validateMetaData } from "./validator";
 
 // Queries
 export { getMetadata }; //metadata package
@@ -14,7 +14,7 @@ export { execute, firstClaims, claimsByOwner, fractionsByOwner }; // graph-clien
 export { mintHypercertToken };
 
 // Validations
-export { metadataValidator, claimdataValidator };
+export { validateMetaData, validateClaimData };
 
 // Contracts
 export { HypercertMinter, HypercertMinterABI };
