@@ -1,8 +1,9 @@
 import { BigNumberish, ethers } from "ethers";
-import { metadataValidator, storeMetadata } from "metadata";
-import { HypercertMetadata } from "metadata/lib/types/metadata";
 import { provider } from "./utils/provider";
 import { HypercertMinter, HypercertMinterABI } from "@bitbeckers/hypercerts-protocol";
+import { validateMetaData } from "./validator";
+import { HypercertMetadata } from "../types/metadata";
+import { storeMetadata } from "./operator";
 
 // TODO dynamic addresses and provider
 const hypercertMinter = <HypercertMinter>(
@@ -11,7 +12,7 @@ const hypercertMinter = <HypercertMinter>(
 
 // TODO error handling
 export const mintHypercertToken = async (claimData: HypercertMetadata, totalUnits: BigNumberish) => {
-  if (metadataValidator(claimData)) {
+  if (validateMetaData(claimData)) {
     // store metadata on IPFS
     const cid = await storeMetadata(claimData);
 

@@ -7,16 +7,13 @@
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
-    "lib": ["es6"],
-    "module": "commonjs",
-    "moduleResolution": "node",
     "noImplicitAny": true,
     "removeComments": true,
     "resolveJsonModule": true,
     "sourceMap": true,
     "strict": true,
-    "target": "es6"
+    "skipLibCheck": true,
   },
   "exclude": ["node_modules"],
-  "include": ["src/**/*"],
+  "include": ["src/**/*", ".graphclient/**/*"],
 }

@@ -1,4 +1,4 @@
-import { execute, ClaimsByOwnerDocument, FirstClaimsQuery, FirstClaimsDocument } from "../.graphclient";
+import { execute, ClaimsByOwnerDocument, FirstClaimsDocument } from "../.graphclient";
 
 const claimsByOwner = async (owner: string) => {
   return await execute(ClaimsByOwnerDocument, { owner });

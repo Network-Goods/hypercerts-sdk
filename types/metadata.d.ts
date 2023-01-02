@@ -5,6 +5,8 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
+import { HypercertClaimdata } from "./claimdata";
+
 /**
  * Claim data for hypercert. ERC1155 Metadata compliant
  */
