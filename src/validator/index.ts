@@ -11,7 +11,7 @@ ajv.addSchema(claimData, "claimData");
 
 // TODO error logging and handling
 const validateMetaData = (data: HypercertMetadata) => {
-  let validate = ajv.getSchema("metaData");
+  let validate = ajv.getSchema<HypercertMetadata>("metaData");
   if (!validate) {
     return false;
   }
@@ -20,14 +20,14 @@ const validateMetaData = (data: HypercertMetadata) => {
     return true;
   } else {
     for (const error in validate.errors) {
-      console.log("Error: ", error);
+      console.log("Error while validation meta data: ", error);
     }
     return false;
   }
 };
 
 const validateClaimData = (data: HypercertClaimdata) => {
-  let validate = ajv.getSchema("claimData");
+  let validate = ajv.getSchema<HypercertClaimdata>("claimData");
   if (!validate) {
     return false;
   }
@@ -35,8 +35,9 @@ const validateClaimData = (data: HypercertClaimdata) => {
   if (validate(data)) {
     return true;
   } else {
+    console.log(validate.errors);
     for (const error in validate.errors) {
-      console.log("Error: ", error);
+      console.log("Error while validating claim data: ", error);
     }
     return false;
   }
