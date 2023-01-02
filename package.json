@@ -38,12 +38,6 @@
     "@graphprotocol/client-cli": "^2.2.15"
   },
   "scripts": {
-    "metadata:build": "yarn types:json && tsc && yarn copy-types",
-    "metadata:coverage": "nyc yarn test",
-    "metadata:copy-types": "shx cp -r types lib/types",
-    "metadata:tsc": "tsc",
-    "metadata:test": "ts-mocha 'test/**/*.ts'",
-    "metadata:types:json": "yarn run json2ts -i 'resources/schema/' -o 'types' --cwd 'resources/schema' --no-declareExternallyReferenced",
     "graph:build": "yarn build:client && tsc",
     "graph:build:client": "graphclient build",
     "graph:compile": "graphql-codegen",
