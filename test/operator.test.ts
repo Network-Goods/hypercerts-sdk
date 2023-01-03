@@ -8,7 +8,6 @@ import { create } from "ipfs-http-client";
 
 const adminServer = MockIPFS.getAdminServer();
 adminServer.start().then(() => console.log("Admin server started"));
-
 const mockNode = MockIPFS.getLocal();
 
 const mockMetadata: HypercertMetadata = {
@@ -23,6 +22,7 @@ const mockMetadata: HypercertMetadata = {
     contributors: ["0x0", "vitalik"],
   },
 };
+const mockMetadataCid = "bafkreigdm2flneb4khd7eixodagst5nrndptgezrjux7gohxcngjn67x6u";
 
 describe("IPFS Client", () => {
   // Start & stop your mock node to reset state between tests
@@ -30,21 +30,31 @@ describe("IPFS Client", () => {
   afterEach(() => mockNode.stop());
   after(() => adminServer.stop());
 
+  /**
+   * Currently just testing against the production NFT.Storage service.
+   * The service is smart enough to deduplicate uploads and return
+   * the same CID for the same mock data, even if coming from different
+   * NFT.storage API keys.
+   */
   it("Smoke test - add", async () => {
+    /**
     await mockNode.forAdd().thenAcceptPublish();
     await mockNode.forCat().thenReturn("Mock content");
     const mockClient = create(mockNode.ipfsOptions);
+    */
 
-    const result = await storeMetadata(mockMetadata, mockClient);
-    expect(result.path).to.include("mockXipfsXcid");
-    expect(result.cid.toString()).to.include("mockXipfsXcid");
-  });
+    const result = await storeMetadata(mockMetadata);
+    expect(result).to.be.a("string");
+    expect(result).to.equal(mockMetadataCid);
+  }).timeout(5000);
 
   it("Smoke test - get", async () => {
+    /**
     await mockNode.forCat().thenReturn("Mock content");
     const mockClient = create(mockNode.ipfsOptions);
+    */
 
-    const data = await getMetadata("bafybeigdyrzt5sfp7udm7hu76uh7y26nf3efuylqabf3oclgtqy55fbzdi", mockClient);
+    const data = await getMetadata(mockMetadataCid);
 
     let catResponse = "";
     for await (const item of data) {
@@ -52,6 +62,6 @@ describe("IPFS Client", () => {
       catResponse = raw + catResponse;
     }
 
-    expect(catResponse).to.be.eq("Mock content");
-  });
+    expect(catResponse).to.deep.equal(JSON.stringify(mockMetadata));
+  }).timeout(5000);
 });
