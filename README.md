@@ -2,7 +2,23 @@
 
 ## Set up
 
-`yarn install`
+### Configuration
+
+1. Copy `.env.template` to `.env`
+2. Create an API key on [NFT.Storage](https://nft.storage/) by going [here](https://nft.storage/manage). Add this to your config.
+
+
+### Dependencies
+
+```bash
+yarn install
+```
+
+### Build
+
+```bash
+yarn build
+```
 
 `yarn lerna run bootstrap`
 
