@@ -15,8 +15,8 @@
     "@bitbeckers/hypercerts-protocol": "0.0.5",
     "ajv": "^8.11.2",
     "ethers": "^5.7.2",
+    "graphql": "^16.6.0",
     "ipfs-core": "^0.17.0",
-    "ipfs-http-client": "56.0.2",
     "loglevel": "^1.8.1",
     "mime": "^3.0.0",
     "nft.storage": "^7.0.0",
@@ -40,7 +40,7 @@
     "typescript": "^4.9.3"
   },
   "scripts": {
-    "graph:build": "yarn build:client && tsc",
+    "graph:build": "yarn graph:build:client && tsc",
     "graph:build:client": "graphclient build",
     "graph:compile": "graphql-codegen",
     "graph:serve": "graphclient serve-dev",

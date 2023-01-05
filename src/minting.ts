@@ -17,7 +17,7 @@ export const mintHypercertToken = async (claimData: HypercertMetadata, totalUnit
     const cid = await storeMetadata(claimData);
 
     // mint hypercert token
-    return hypercertMinter.mintClaim(totalUnits, cid.path);
+    return hypercertMinter.mintClaim(totalUnits, cid);
   } else {
     console.log("Incorrect metadata");
   }

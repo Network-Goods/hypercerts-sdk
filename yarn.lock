@@ -1818,14 +1818,6 @@
     cborg "^1.6.0"
     multiformats "^10.0.2"
 
-"@ipld/dag-json@^8.0.1":
-  version "8.0.11"
-  resolved "https://registry.yarnpkg.com/@ipld/dag-json/-/dag-json-8.0.11.tgz#8d30cc2dfacb0aef04d327465d3df91e79e8b6ce"
-  integrity sha512-Pea7JXeYHTWXRTIhBqBlhw7G53PJ7yta3G/sizGEZyzdeEwhZRr0od5IQ0r2ZxOt1Do+2czddjeEPp+YTxDwCA==
-  dependencies:
-    cborg "^1.5.4"
-    multiformats "^9.5.4"
-
 "@ipld/dag-json@^9.0.0":
   version "9.1.0"
   resolved "https://registry.yarnpkg.com/@ipld/dag-json/-/dag-json-9.1.0.tgz#3774dbb8c4b8719764f287f187bcaac8a108fa79"
@@ -1834,7 +1826,7 @@
     cborg "^1.5.4"
     multiformats "^10.0.2"
 
-"@ipld/dag-pb@^2.0.2", "@ipld/dag-pb@^2.1.3":
+"@ipld/dag-pb@^2.0.2":
   version "2.1.18"
   resolved "https://registry.yarnpkg.com/@ipld/dag-pb/-/dag-pb-2.1.18.tgz#12d63e21580e87c75fd1a2c62e375a78e355c16f"
   integrity sha512-ZBnf2fuX9y3KccADURG5vb9FaOeMjFkCrNysB0PtftME/4iCTjxfaLoNq/IAh5fTqUOMXvryN6Jyka4ZGuMLIg==
@@ -4026,14 +4018,6 @@ d@1, d@^1.0.1:
     es5-ext "^0.10.50"
     type "^1.0.1"
 
-dag-jose@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/dag-jose/-/dag-jose-1.0.0.tgz#52e42d70cb5bee31ae4e8e3ab860615568d7ad73"
-  integrity sha512-U0b/YsIPBp6YZNTFrVjwLZAlY3qGRxZTIEcM/CcQmrVrCWq9MWQq9pheXVSPLIhF4SNwzp2SikPva4/BIrJY+g==
-  dependencies:
-    "@ipld/dag-cbor" "^6.0.3"
-    multiformats "^9.0.2"
-
 dag-jose@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/dag-jose/-/dag-jose-3.0.1.tgz#0c474eff3e70ad522b5d42e848786358c11ea7c6"
@@ -5031,6 +5015,11 @@ graphql-yoga@3.1.1:
   resolved "https://registry.yarnpkg.com/graphql/-/graphql-15.8.0.tgz#33410e96b012fa3bdb1091cc99a94769db212b38"
   integrity sha512-5gghUc24tP9HRznNpV2+FIoq3xKkj5dTQqf4v0CpdPbFVwFkWoxOM+o+2OC9ZSvjEMTjfmG9QT+gcvggTwW1zw==
 
+graphql@^16.6.0:
+  version "16.6.0"
+  resolved "https://registry.yarnpkg.com/graphql/-/graphql-16.6.0.tgz#c2dcffa4649db149f6282af726c8c83f1c7c5fdb"
+  integrity sha512-KPIBPDlW7NxrbT/eh4qPXz5FiFdL5UbaA0XUNz2Rp3Z3hqBSkbj0GVjwFDztsWVauZUWsbKHgMg++sk8UX0bkw==
+
 hamt-sharding@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/hamt-sharding/-/hamt-sharding-2.0.1.tgz#f45686d0339e74b03b233bee1bde9587727129b6"
@@ -5448,17 +5437,6 @@ ipfs-core-config@^0.6.0:
     p-queue "^7.2.0"
     uint8arrays "^4.0.2"
 
-ipfs-core-types@^0.10.2, ipfs-core-types@^0.10.3:
-  version "0.10.3"
-  resolved "https://registry.yarnpkg.com/ipfs-core-types/-/ipfs-core-types-0.10.3.tgz#89ebe98199d4d829f2b20104bfa3299f808c80fe"
-  integrity sha512-GNid2lRBjR5qgScCglgk7w9Hk3TZAwPHQXxOLQx72wgyc0jF2U5NXRoKW0GRvX8NPbHmsrFszForIqxd23I1Gw==
-  dependencies:
-    "@ipld/dag-pb" "^2.1.3"
-    interface-datastore "^6.0.2"
-    ipfs-unixfs "^6.0.3"
-    multiaddr "^10.0.0"
-    multiformats "^9.5.1"
-
 ipfs-core-types@^0.13.0:
   version "0.13.0"
   resolved "https://registry.yarnpkg.com/ipfs-core-types/-/ipfs-core-types-0.13.0.tgz#eb2f27df7b91940e39b201b08affc9a65f63f503"
@@ -5508,32 +5486,6 @@ ipfs-core-utils@^0.12.1:
     nanoid "^3.1.23"
     parse-duration "^1.0.0"
     timeout-abort-controller "^1.1.1"
-    uint8arrays "^3.0.0"
-
-ipfs-core-utils@^0.14.2:
-  version "0.14.3"
-  resolved "https://registry.yarnpkg.com/ipfs-core-utils/-/ipfs-core-utils-0.14.3.tgz#d04c631c472507bdefc58d4e8d1d9109efbb411c"
-  integrity sha512-aBkewVhgAj3NWXPwu6imj0wADGiGVZmJzqKzODOJsibDjkx6FGdMv8kvvqtLnK8LS/dvSk9yk32IDtuDyYoV7Q==
-  dependencies:
-    any-signal "^3.0.0"
-    blob-to-it "^1.0.1"
-    browser-readablestream-to-it "^1.0.1"
-    debug "^4.1.1"
-    err-code "^3.0.1"
-    ipfs-core-types "^0.10.3"
-    ipfs-unixfs "^6.0.3"
-    ipfs-utils "^9.0.6"
-    it-all "^1.0.4"
-    it-map "^1.0.4"
-    it-peekable "^1.0.2"
-    it-to-stream "^1.0.0"
-    merge-options "^3.0.4"
-    multiaddr "^10.0.0"
-    multiaddr-to-uri "^8.0.0"
-    multiformats "^9.5.1"
-    nanoid "^3.1.23"
-    parse-duration "^1.0.0"
-    timeout-abort-controller "^3.0.0"
     uint8arrays "^3.0.0"
 
 ipfs-core-utils@^0.17.0:
@@ -5638,30 +5590,6 @@ ipfs-core@^0.17.0:
     parse-duration "^1.0.0"
     timeout-abort-controller "^3.0.0"
     uint8arrays "^4.0.2"
-
-ipfs-http-client@56.0.2:
-  version "56.0.2"
-  resolved "https://registry.yarnpkg.com/ipfs-http-client/-/ipfs-http-client-56.0.2.tgz#36b98c69545ae69030212a9f02c2dcd39afcb929"
-  integrity sha512-IeIJJo6CDNCnTFz2hTSzzBDX34/jJmlyxk65NJAS+kgvel9aPRYaSestymDJWvOZj4/bBtiJ8X2CsRQoaVyIBg==
-  dependencies:
-    "@ipld/dag-cbor" "^7.0.0"
-    "@ipld/dag-json" "^8.0.1"
-    "@ipld/dag-pb" "^2.1.3"
-    any-signal "^3.0.0"
-    dag-jose "^1.0.0"
-    debug "^4.1.1"
-    err-code "^3.0.1"
-    ipfs-core-types "^0.10.2"
-    ipfs-core-utils "^0.14.2"
-    ipfs-utils "^9.0.2"
-    it-first "^1.0.6"
-    it-last "^1.0.4"
-    merge-options "^3.0.4"
-    multiaddr "^10.0.0"
-    multiformats "^9.5.1"
-    parse-duration "^1.0.0"
-    stream-to-it "^0.2.2"
-    uint8arrays "^3.0.0"
 
 ipfs-http-client@^59.0.0:
   version "59.0.0"
@@ -6258,7 +6186,7 @@ it-handshake@^4.1.2:
     p-defer "^4.0.0"
     uint8arraylist "^2.0.0"
 
-it-last@^1.0.4, it-last@^1.0.5:
+it-last@^1.0.5:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/it-last/-/it-last-1.0.6.tgz#4106232e5905ec11e16de15a0e9f7037eaecfc45"
   integrity sha512-aFGeibeiX/lM4bX3JY0OkVCFkAw8+n9lkukkLNivbJRvNz8lI3YXv5xcqhFUV2lDJiraEK3OXRDbGuevnnR67Q==
@@ -7170,7 +7098,7 @@ multiformats@^10.0.0, multiformats@^10.0.1, multiformats@^10.0.2:
   resolved "https://registry.yarnpkg.com/multiformats/-/multiformats-10.0.3.tgz#d4147d01f9a31271c6fb5d24adf9b01f9e656bba"
   integrity sha512-K2yGSmstS/oEmYiEIieHb53jJCaqp4ERPDQAYrm5sV3UUrVDZeshJQCK6GHAKyIGufU1vAcbS0PdAAZmC7Tzcw==
 
-multiformats@^9.0.2, multiformats@^9.0.4, multiformats@^9.4.13, multiformats@^9.4.2, multiformats@^9.4.5, multiformats@^9.4.7, multiformats@^9.5.1, multiformats@^9.5.4, multiformats@^9.6.3, multiformats@^9.6.4:
+multiformats@^9.0.4, multiformats@^9.4.13, multiformats@^9.4.2, multiformats@^9.4.5, multiformats@^9.4.7, multiformats@^9.5.4, multiformats@^9.6.3, multiformats@^9.6.4:
   version "9.9.0"
   resolved "https://registry.yarnpkg.com/multiformats/-/multiformats-9.9.0.tgz#c68354e7d21037a8f1f8833c8ccd68618e8f1d37"
   integrity sha512-HoMUjhH9T8DDBNT+6xzkrd9ga/XiBI4xLr58LJACwK6G3HTOPeMz4nB4KJs33L2BelrIJa7P0VuNaVF3hMYfjg==
