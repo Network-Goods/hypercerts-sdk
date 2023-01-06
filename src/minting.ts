@@ -1,6 +1,6 @@
 import { BigNumberish, ethers } from "ethers";
 import { provider } from "./utils/provider";
-import { HypercertMinter, HypercertMinterABI } from "@bitbeckers/hypercerts-protocol";
+import { HypercertMinter, HypercertMinterABI } from "@network-goods/hypercerts-protocol";
 import { validateMetaData } from "./validator";
 import { HypercertMetadata } from "../types/metadata";
 import { storeMetadata } from "./operator";

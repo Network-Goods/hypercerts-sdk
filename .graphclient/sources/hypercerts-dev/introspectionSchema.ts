@@ -351,7 +351,7 @@ const schemaAST = {
       "kind": "ObjectTypeDefinition",
       "name": {
         "kind": "Name",
-        "value": "ClaimFraction"
+        "value": "ClaimToken"
       },
       "fields": [
         {
@@ -400,10 +400,13 @@ const schemaAST = {
           },
           "arguments": [],
           "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "Claim"
+            "kind": "NonNullType",
+            "type": {
+              "kind": "NamedType",
+              "name": {
+                "kind": "Name",
+                "value": "Claim"
+              }
             }
           },
           "directives": []
@@ -416,10 +419,13 @@ const schemaAST = {
           },
           "arguments": [],
           "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "Bytes"
+            "kind": "NonNullType",
+            "type": {
+              "kind": "NamedType",
+              "name": {
+                "kind": "Name",
+                "value": "Bytes"
+              }
             }
           },
           "directives": []
@@ -451,7 +457,7 @@ const schemaAST = {
       "kind": "InputObjectTypeDefinition",
       "name": {
         "kind": "Name",
-        "value": "ClaimFraction_filter"
+        "value": "ClaimToken_filter"
       },
       "fields": [
         {
@@ -1486,7 +1492,7 @@ const schemaAST = {
       "kind": "EnumTypeDefinition",
       "name": {
         "kind": "Name",
-        "value": "ClaimFraction_orderBy"
+        "value": "ClaimToken_orderBy"
       },
       "values": [
         {
@@ -3172,7 +3178,7 @@ const schemaAST = {
           "kind": "FieldDefinition",
           "name": {
             "kind": "Name",
-            "value": "claimFraction"
+            "value": "claimToken"
           },
           "arguments": [
             {
@@ -3245,7 +3251,7 @@ const schemaAST = {
             "kind": "NamedType",
             "name": {
               "kind": "Name",
-              "value": "ClaimFraction"
+              "value": "ClaimToken"
             }
           },
           "directives": []
@@ -3254,7 +3260,7 @@ const schemaAST = {
           "kind": "FieldDefinition",
           "name": {
             "kind": "Name",
-            "value": "claimFractions"
+            "value": "claimTokens"
           },
           "arguments": [
             {
@@ -3305,7 +3311,7 @@ const schemaAST = {
                 "kind": "NamedType",
                 "name": {
                   "kind": "Name",
-                  "value": "ClaimFraction_orderBy"
+                  "value": "ClaimToken_orderBy"
                 }
               },
               "directives": []
@@ -3335,7 +3341,7 @@ const schemaAST = {
                 "kind": "NamedType",
                 "name": {
                   "kind": "Name",
-                  "value": "ClaimFraction_filter"
+                  "value": "ClaimToken_filter"
                 }
               },
               "directives": []
@@ -3398,7 +3404,7 @@ const schemaAST = {
                   "kind": "NamedType",
                   "name": {
                     "kind": "Name",
-                    "value": "ClaimFraction"
+                    "value": "ClaimToken"
                   }
                 }
               }
@@ -3696,7 +3702,7 @@ const schemaAST = {
           "kind": "FieldDefinition",
           "name": {
             "kind": "Name",
-            "value": "claimFraction"
+            "value": "claimToken"
           },
           "arguments": [
             {
@@ -3769,7 +3775,7 @@ const schemaAST = {
             "kind": "NamedType",
             "name": {
               "kind": "Name",
-              "value": "ClaimFraction"
+              "value": "ClaimToken"
             }
           },
           "directives": []
@@ -3778,7 +3784,7 @@ const schemaAST = {
           "kind": "FieldDefinition",
           "name": {
             "kind": "Name",
-            "value": "claimFractions"
+            "value": "claimTokens"
           },
           "arguments": [
             {
@@ -3829,7 +3835,7 @@ const schemaAST = {
                 "kind": "NamedType",
                 "name": {
                   "kind": "Name",
-                  "value": "ClaimFraction_orderBy"
+                  "value": "ClaimToken_orderBy"
                 }
               },
               "directives": []
@@ -3859,7 +3865,7 @@ const schemaAST = {
                 "kind": "NamedType",
                 "name": {
                   "kind": "Name",
-                  "value": "ClaimFraction_filter"
+                  "value": "ClaimToken_filter"
                 }
               },
               "directives": []
@@ -3922,7 +3928,7 @@ const schemaAST = {
                   "kind": "NamedType",
                   "name": {
                     "kind": "Name",
-                    "value": "ClaimFraction"
+                    "value": "ClaimToken"
                   }
                 }
               }

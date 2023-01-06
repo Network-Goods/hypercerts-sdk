@@ -1,19 +1,19 @@
 {
   "name": "@network-goods/hypercerts-sdk",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "SDK for hypercerts protocol",
   "repository": "git@github.com:Network-Goods/hypercerts-sdk.git",
   "author": "Network Goods",
   "license": "MIT",
   "typedocMain": "src/index.ts",
-  "private": true,
   "main": "./lib/cjs/src/index.js",
   "files": [
     "lib/**/*"
   ],
   "dependencies": {
-    "@bitbeckers/hypercerts-protocol": "0.0.5",
+    "@network-goods/hypercerts-protocol": "0.0.6",
     "ajv": "^8.11.2",
+    "axios": "^1.2.2",
     "ethers": "^5.7.2",
     "graphql": "^16.6.0",
     "ipfs-core": "^0.17.0",
@@ -39,6 +39,9 @@
     "ts-node": "^10.9.1",
     "typescript": "^4.9.3"
   },
+  "resolutions": {
+    "graphql": "^16.6.0"
+  },
   "scripts": {
     "graph:build": "yarn graph:build:client && tsc",
     "graph:build:client": "graphclient build",
@@ -48,7 +51,7 @@
     "graph:test": "echo \"Error: No tests\" && exit 1",
     "graph:watch": "graphql-codegen -w",
     "clean": "rm -rf ./lib",
-    "build": "npm run clean && npm run build:esm && npm run build:cjs",
+    "build": "npm run clean && npm run graph:build &&npm run build:esm && npm run build:cjs",
     "build:esm": "tsc -p ./tsconfig.esm.json && mv ./lib/esm/src/index.js ./lib/esm/src/index.mjs",
     "build:cjs": "tsc -p ./tsconfig.cjs.json",
     "prepack": "npm run build",

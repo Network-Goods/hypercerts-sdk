@@ -37,15 +37,15 @@ type Claim {
   totalUnits: BigInt
 }
 
-type ClaimFraction {
+type ClaimToken {
   id: String!
   tokenID: BigInt!
-  claim: Claim
-  owner: Bytes
+  claim: Claim!
+  owner: Bytes!
   units: BigInt!
 }
 
-input ClaimFraction_filter {
+input ClaimToken_filter {
   id: String
   id_not: String
   id_gt: String
@@ -113,7 +113,7 @@ input ClaimFraction_filter {
   _change_block: BlockChangedFilter
 }
 
-enum ClaimFraction_orderBy {
+enum ClaimToken_orderBy {
   id
   tokenID
   claim
@@ -224,9 +224,13 @@ enum OrderDirection {
 type Query {
   claim(
     id: ID!
-    """The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted."""
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
     block: Block_height
-    """Set to `allow` to receive data even if the subgraph has skipped over errors while syncing."""
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
     subgraphError: _SubgraphErrorPolicy_! = deny
   ): Claim
   claims(
@@ -235,29 +239,41 @@ type Query {
     orderBy: Claim_orderBy
     orderDirection: OrderDirection
     where: Claim_filter
-    """The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted."""
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
     block: Block_height
-    """Set to `allow` to receive data even if the subgraph has skipped over errors while syncing."""
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
     subgraphError: _SubgraphErrorPolicy_! = deny
   ): [Claim!]!
-  claimFraction(
+  claimToken(
     id: ID!
-    """The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted."""
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
     block: Block_height
-    """Set to `allow` to receive data even if the subgraph has skipped over errors while syncing."""
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
     subgraphError: _SubgraphErrorPolicy_! = deny
-  ): ClaimFraction
-  claimFractions(
+  ): ClaimToken
+  claimTokens(
     skip: Int = 0
     first: Int = 100
-    orderBy: ClaimFraction_orderBy
+    orderBy: ClaimToken_orderBy
     orderDirection: OrderDirection
-    where: ClaimFraction_filter
-    """The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted."""
+    where: ClaimToken_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
     block: Block_height
-    """Set to `allow` to receive data even if the subgraph has skipped over errors while syncing."""
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
     subgraphError: _SubgraphErrorPolicy_! = deny
-  ): [ClaimFraction!]!
+  ): [ClaimToken!]!
   """Access to subgraph metadata"""
   _meta(block: Block_height): _Meta_
 }
@@ -265,9 +281,13 @@ type Query {
 type Subscription {
   claim(
     id: ID!
-    """The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted."""
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
     block: Block_height
-    """Set to `allow` to receive data even if the subgraph has skipped over errors while syncing."""
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
     subgraphError: _SubgraphErrorPolicy_! = deny
   ): Claim
   claims(
@@ -276,29 +296,41 @@ type Subscription {
     orderBy: Claim_orderBy
     orderDirection: OrderDirection
     where: Claim_filter
-    """The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted."""
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
     block: Block_height
-    """Set to `allow` to receive data even if the subgraph has skipped over errors while syncing."""
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
     subgraphError: _SubgraphErrorPolicy_! = deny
   ): [Claim!]!
-  claimFraction(
+  claimToken(
     id: ID!
-    """The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted."""
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
     block: Block_height
-    """Set to `allow` to receive data even if the subgraph has skipped over errors while syncing."""
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
     subgraphError: _SubgraphErrorPolicy_! = deny
-  ): ClaimFraction
-  claimFractions(
+  ): ClaimToken
+  claimTokens(
     skip: Int = 0
     first: Int = 100
-    orderBy: ClaimFraction_orderBy
+    orderBy: ClaimToken_orderBy
     orderDirection: OrderDirection
-    where: ClaimFraction_filter
-    """The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted."""
+    where: ClaimToken_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
     block: Block_height
-    """Set to `allow` to receive data even if the subgraph has skipped over errors while syncing."""
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
     subgraphError: _SubgraphErrorPolicy_! = deny
-  ): [ClaimFraction!]!
+  ): [ClaimToken!]!
   """Access to subgraph metadata"""
   _meta(block: Block_height): _Meta_
 }
@@ -331,6 +363,8 @@ type _Meta_ {
 enum _SubgraphErrorPolicy_ {
   """Data will be returned even if the subgraph has indexing errors"""
   allow
-  """If the subgraph has indexing errors, data will be omitted. The default."""
+  """
+  If the subgraph has indexing errors, data will be omitted. The default.
+  """
   deny
 }

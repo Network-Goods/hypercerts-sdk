@@ -40,15 +40,15 @@ export type Claim = {
   totalUnits?: Maybe<Scalars['BigInt']>;
 };
 
-export type ClaimFraction = {
+export type ClaimToken = {
   id: Scalars['String'];
   tokenID: Scalars['BigInt'];
-  claim?: Maybe<Claim>;
-  owner?: Maybe<Scalars['Bytes']>;
+  claim: Claim;
+  owner: Scalars['Bytes'];
   units: Scalars['BigInt'];
 };
 
-export type ClaimFraction_filter = {
+export type ClaimToken_filter = {
   id?: InputMaybe<Scalars['String']>;
   id_not?: InputMaybe<Scalars['String']>;
   id_gt?: InputMaybe<Scalars['String']>;
@@ -116,7 +116,7 @@ export type ClaimFraction_filter = {
   _change_block?: InputMaybe<BlockChangedFilter>;
 };
 
-export type ClaimFraction_orderBy =
+export type ClaimToken_orderBy =
   | 'id'
   | 'tokenID'
   | 'claim'
@@ -224,8 +224,8 @@ export type OrderDirection =
 export type Query = {
   claim?: Maybe<Claim>;
   claims: Array<Claim>;
-  claimFraction?: Maybe<ClaimFraction>;
-  claimFractions: Array<ClaimFraction>;
+  claimToken?: Maybe<ClaimToken>;
+  claimTokens: Array<ClaimToken>;
   /** Access to subgraph metadata */
   _meta?: Maybe<_Meta_>;
 };
@@ -249,19 +249,19 @@ export type QueryclaimsArgs = {
 };
 
 
-export type QueryclaimFractionArgs = {
+export type QueryclaimTokenArgs = {
   id: Scalars['ID'];
   block?: InputMaybe<Block_height>;
   subgraphError?: _SubgraphErrorPolicy_;
 };
 
 
-export type QueryclaimFractionsArgs = {
+export type QueryclaimTokensArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ClaimFraction_orderBy>;
+  orderBy?: InputMaybe<ClaimToken_orderBy>;
   orderDirection?: InputMaybe<OrderDirection>;
-  where?: InputMaybe<ClaimFraction_filter>;
+  where?: InputMaybe<ClaimToken_filter>;
   block?: InputMaybe<Block_height>;
   subgraphError?: _SubgraphErrorPolicy_;
 };
@@ -274,8 +274,8 @@ export type Query_metaArgs = {
 export type Subscription = {
   claim?: Maybe<Claim>;
   claims: Array<Claim>;
-  claimFraction?: Maybe<ClaimFraction>;
-  claimFractions: Array<ClaimFraction>;
+  claimToken?: Maybe<ClaimToken>;
+  claimTokens: Array<ClaimToken>;
   /** Access to subgraph metadata */
   _meta?: Maybe<_Meta_>;
 };
@@ -299,19 +299,19 @@ export type SubscriptionclaimsArgs = {
 };
 
 
-export type SubscriptionclaimFractionArgs = {
+export type SubscriptionclaimTokenArgs = {
   id: Scalars['ID'];
   block?: InputMaybe<Block_height>;
   subgraphError?: _SubgraphErrorPolicy_;
 };
 
 
-export type SubscriptionclaimFractionsArgs = {
+export type SubscriptionclaimTokensArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ClaimFraction_orderBy>;
+  orderBy?: InputMaybe<ClaimToken_orderBy>;
   orderDirection?: InputMaybe<OrderDirection>;
-  where?: InputMaybe<ClaimFraction_filter>;
+  where?: InputMaybe<ClaimToken_filter>;
   block?: InputMaybe<Block_height>;
   subgraphError?: _SubgraphErrorPolicy_;
 };
@@ -358,9 +358,9 @@ export type _SubgraphErrorPolicy_ =
   /** null **/
   claims: InContextSdkMethod<Query['claims'], QueryclaimsArgs, MeshContext>,
   /** null **/
-  claimFraction: InContextSdkMethod<Query['claimFraction'], QueryclaimFractionArgs, MeshContext>,
+  claimToken: InContextSdkMethod<Query['claimToken'], QueryclaimTokenArgs, MeshContext>,
   /** null **/
-  claimFractions: InContextSdkMethod<Query['claimFractions'], QueryclaimFractionsArgs, MeshContext>,
+  claimTokens: InContextSdkMethod<Query['claimTokens'], QueryclaimTokensArgs, MeshContext>,
   /** Access to subgraph metadata **/
   _meta: InContextSdkMethod<Query['_meta'], Query_metaArgs, MeshContext>
   };
@@ -375,9 +375,9 @@ export type _SubgraphErrorPolicy_ =
   /** null **/
   claims: InContextSdkMethod<Subscription['claims'], SubscriptionclaimsArgs, MeshContext>,
   /** null **/
-  claimFraction: InContextSdkMethod<Subscription['claimFraction'], SubscriptionclaimFractionArgs, MeshContext>,
+  claimToken: InContextSdkMethod<Subscription['claimToken'], SubscriptionclaimTokenArgs, MeshContext>,
   /** null **/
-  claimFractions: InContextSdkMethod<Subscription['claimFractions'], SubscriptionclaimFractionsArgs, MeshContext>,
+  claimTokens: InContextSdkMethod<Subscription['claimTokens'], SubscriptionclaimTokensArgs, MeshContext>,
   /** Access to subgraph metadata **/
   _meta: InContextSdkMethod<Subscription['_meta'], Subscription_metaArgs, MeshContext>
   };

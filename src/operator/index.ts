@@ -1,10 +1,11 @@
 // @ts-ignore
 import { NFTStorage, CIDString, Blob } from "nft.storage";
 import { HypercertMetadata } from "../../types/metadata";
+import axios from "axios";
 
 // NFT.Storage
 const NFT_STORAGE_TOKEN = process.env.NFT_STORAGE_TOKEN ?? "MISSING_TOKEN";
-const NFT_STORAGE_IPFS_GATEWAY = "https://nftstorage.link";
+const NFT_STORAGE_IPFS_GATEWAY = "https://{cid}.ipfs.nftstorage.link/";
 const defaultNftStorageClient = new NFTStorage({ token: NFT_STORAGE_TOKEN });
 
 export const storeMetadata = async (data: HypercertMetadata, targetClient?: NFTStorage): Promise<CIDString> => {
@@ -17,9 +18,12 @@ export const storeMetadata = async (data: HypercertMetadata, targetClient?: NFTS
 };
 
 export const getMetadata = async (cid: string) => {
-  const nftStorageGatewayLink = cid.replace("ipfs://", `${NFT_STORAGE_IPFS_GATEWAY}/ipfs/`);
-  console.log(`Getting metadata: ${cid}`);
-  return fetch(nftStorageGatewayLink).then((result) => result.json() as Promise<HypercertMetadata>);
+  const nftStorageGatewayLink = NFT_STORAGE_IPFS_GATEWAY.replace("{cid}", cid);
+  console.log(`Getting metadata ${cid} at ${nftStorageGatewayLink}`);
+  return axios
+    .get<HypercertMetadata>(nftStorageGatewayLink)
+    .then((result) => result.data)
+    .catch((err) => console.error(err));
 };
 
 export const deleteMetadata = async (cid: string, targetClient?: NFTStorage) => {

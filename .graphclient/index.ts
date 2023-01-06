@@ -61,15 +61,15 @@ export type Claim = {
   totalUnits?: Maybe<Scalars['BigInt']>;
 };
 
-export type ClaimFraction = {
+export type ClaimToken = {
   id: Scalars['String'];
   tokenID: Scalars['BigInt'];
-  claim?: Maybe<Claim>;
-  owner?: Maybe<Scalars['Bytes']>;
+  claim: Claim;
+  owner: Scalars['Bytes'];
   units: Scalars['BigInt'];
 };
 
-export type ClaimFraction_filter = {
+export type ClaimToken_filter = {
   id?: InputMaybe<Scalars['String']>;
   id_not?: InputMaybe<Scalars['String']>;
   id_gt?: InputMaybe<Scalars['String']>;
@@ -137,7 +137,7 @@ export type ClaimFraction_filter = {
   _change_block?: InputMaybe<BlockChangedFilter>;
 };
 
-export type ClaimFraction_orderBy =
+export type ClaimToken_orderBy =
   | 'id'
   | 'tokenID'
   | 'claim'
@@ -245,8 +245,8 @@ export type OrderDirection =
 export type Query = {
   claim?: Maybe<Claim>;
   claims: Array<Claim>;
-  claimFraction?: Maybe<ClaimFraction>;
-  claimFractions: Array<ClaimFraction>;
+  claimToken?: Maybe<ClaimToken>;
+  claimTokens: Array<ClaimToken>;
   /** Access to subgraph metadata */
   _meta?: Maybe<_Meta_>;
 };
@@ -270,19 +270,19 @@ export type QueryclaimsArgs = {
 };
 
 
-export type QueryclaimFractionArgs = {
+export type QueryclaimTokenArgs = {
   id: Scalars['ID'];
   block?: InputMaybe<Block_height>;
   subgraphError?: _SubgraphErrorPolicy_;
 };
 
 
-export type QueryclaimFractionsArgs = {
+export type QueryclaimTokensArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ClaimFraction_orderBy>;
+  orderBy?: InputMaybe<ClaimToken_orderBy>;
   orderDirection?: InputMaybe<OrderDirection>;
-  where?: InputMaybe<ClaimFraction_filter>;
+  where?: InputMaybe<ClaimToken_filter>;
   block?: InputMaybe<Block_height>;
   subgraphError?: _SubgraphErrorPolicy_;
 };
@@ -295,8 +295,8 @@ export type Query_metaArgs = {
 export type Subscription = {
   claim?: Maybe<Claim>;
   claims: Array<Claim>;
-  claimFraction?: Maybe<ClaimFraction>;
-  claimFractions: Array<ClaimFraction>;
+  claimToken?: Maybe<ClaimToken>;
+  claimTokens: Array<ClaimToken>;
   /** Access to subgraph metadata */
   _meta?: Maybe<_Meta_>;
 };
@@ -320,19 +320,19 @@ export type SubscriptionclaimsArgs = {
 };
 
 
-export type SubscriptionclaimFractionArgs = {
+export type SubscriptionclaimTokenArgs = {
   id: Scalars['ID'];
   block?: InputMaybe<Block_height>;
   subgraphError?: _SubgraphErrorPolicy_;
 };
 
 
-export type SubscriptionclaimFractionsArgs = {
+export type SubscriptionclaimTokensArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<ClaimFraction_orderBy>;
+  orderBy?: InputMaybe<ClaimToken_orderBy>;
   orderDirection?: InputMaybe<OrderDirection>;
-  where?: InputMaybe<ClaimFraction_filter>;
+  where?: InputMaybe<ClaimToken_filter>;
   block?: InputMaybe<Block_height>;
   subgraphError?: _SubgraphErrorPolicy_;
 };
@@ -464,9 +464,9 @@ export type ResolversTypes = ResolversObject<{
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
   Bytes: ResolverTypeWrapper<Scalars['Bytes']>;
   Claim: ResolverTypeWrapper<Claim>;
-  ClaimFraction: ResolverTypeWrapper<ClaimFraction>;
-  ClaimFraction_filter: ClaimFraction_filter;
-  ClaimFraction_orderBy: ClaimFraction_orderBy;
+  ClaimToken: ResolverTypeWrapper<ClaimToken>;
+  ClaimToken_filter: ClaimToken_filter;
+  ClaimToken_orderBy: ClaimToken_orderBy;
   Claim_filter: Claim_filter;
   Claim_orderBy: Claim_orderBy;
   Float: ResolverTypeWrapper<Scalars['Float']>;
@@ -490,8 +490,8 @@ export type ResolversParentTypes = ResolversObject<{
   Boolean: Scalars['Boolean'];
   Bytes: Scalars['Bytes'];
   Claim: Claim;
-  ClaimFraction: ClaimFraction;
-  ClaimFraction_filter: ClaimFraction_filter;
+  ClaimToken: ClaimToken;
+  ClaimToken_filter: ClaimToken_filter;
   Claim_filter: Claim_filter;
   Float: Scalars['Float'];
   ID: Scalars['ID'];
@@ -541,11 +541,11 @@ export type ClaimResolvers<ContextType = MeshContext, ParentType extends Resolve
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
-export type ClaimFractionResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['ClaimFraction'] = ResolversParentTypes['ClaimFraction']> = ResolversObject<{
+export type ClaimTokenResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['ClaimToken'] = ResolversParentTypes['ClaimToken']> = ResolversObject<{
   id?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   tokenID?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  claim?: Resolver<Maybe<ResolversTypes['Claim']>, ParentType, ContextType>;
-  owner?: Resolver<Maybe<ResolversTypes['Bytes']>, ParentType, ContextType>;
+  claim?: Resolver<ResolversTypes['Claim'], ParentType, ContextType>;
+  owner?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
   units?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
@@ -553,16 +553,16 @@ export type ClaimFractionResolvers<ContextType = MeshContext, ParentType extends
 export type QueryResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = ResolversObject<{
   claim?: Resolver<Maybe<ResolversTypes['Claim']>, ParentType, ContextType, RequireFields<QueryclaimArgs, 'id' | 'subgraphError'>>;
   claims?: Resolver<Array<ResolversTypes['Claim']>, ParentType, ContextType, RequireFields<QueryclaimsArgs, 'skip' | 'first' | 'subgraphError'>>;
-  claimFraction?: Resolver<Maybe<ResolversTypes['ClaimFraction']>, ParentType, ContextType, RequireFields<QueryclaimFractionArgs, 'id' | 'subgraphError'>>;
-  claimFractions?: Resolver<Array<ResolversTypes['ClaimFraction']>, ParentType, ContextType, RequireFields<QueryclaimFractionsArgs, 'skip' | 'first' | 'subgraphError'>>;
+  claimToken?: Resolver<Maybe<ResolversTypes['ClaimToken']>, ParentType, ContextType, RequireFields<QueryclaimTokenArgs, 'id' | 'subgraphError'>>;
+  claimTokens?: Resolver<Array<ResolversTypes['ClaimToken']>, ParentType, ContextType, RequireFields<QueryclaimTokensArgs, 'skip' | 'first' | 'subgraphError'>>;
   _meta?: Resolver<Maybe<ResolversTypes['_Meta_']>, ParentType, ContextType, Partial<Query_metaArgs>>;
 }>;
 
 export type SubscriptionResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['Subscription'] = ResolversParentTypes['Subscription']> = ResolversObject<{
   claim?: SubscriptionResolver<Maybe<ResolversTypes['Claim']>, "claim", ParentType, ContextType, RequireFields<SubscriptionclaimArgs, 'id' | 'subgraphError'>>;
   claims?: SubscriptionResolver<Array<ResolversTypes['Claim']>, "claims", ParentType, ContextType, RequireFields<SubscriptionclaimsArgs, 'skip' | 'first' | 'subgraphError'>>;
-  claimFraction?: SubscriptionResolver<Maybe<ResolversTypes['ClaimFraction']>, "claimFraction", ParentType, ContextType, RequireFields<SubscriptionclaimFractionArgs, 'id' | 'subgraphError'>>;
-  claimFractions?: SubscriptionResolver<Array<ResolversTypes['ClaimFraction']>, "claimFractions", ParentType, ContextType, RequireFields<SubscriptionclaimFractionsArgs, 'skip' | 'first' | 'subgraphError'>>;
+  claimToken?: SubscriptionResolver<Maybe<ResolversTypes['ClaimToken']>, "claimToken", ParentType, ContextType, RequireFields<SubscriptionclaimTokenArgs, 'id' | 'subgraphError'>>;
+  claimTokens?: SubscriptionResolver<Array<ResolversTypes['ClaimToken']>, "claimTokens", ParentType, ContextType, RequireFields<SubscriptionclaimTokensArgs, 'skip' | 'first' | 'subgraphError'>>;
   _meta?: SubscriptionResolver<Maybe<ResolversTypes['_Meta_']>, "_meta", ParentType, ContextType, Partial<Subscription_metaArgs>>;
 }>;
 
@@ -585,7 +585,7 @@ export type Resolvers<ContextType = MeshContext> = ResolversObject<{
   BigInt?: GraphQLScalarType;
   Bytes?: GraphQLScalarType;
   Claim?: ClaimResolvers<ContextType>;
-  ClaimFraction?: ClaimFractionResolvers<ContextType>;
+  ClaimToken?: ClaimTokenResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
   Subscription?: SubscriptionResolvers<ContextType>;
   _Block_?: _Block_Resolvers<ContextType>;
@@ -683,17 +683,17 @@ const merger = new(BareMerger as any)({
         },
         location: 'ClaimsByOwnerDocument.graphql'
       },{
-        document: FirstClaimsDocument,
+        document: RecentClaimsDocument,
         get rawSDL() {
-          return printWithCache(FirstClaimsDocument);
+          return printWithCache(RecentClaimsDocument);
         },
-        location: 'FirstClaimsDocument.graphql'
+        location: 'RecentClaimsDocument.graphql'
       },{
-        document: FractionsByOwnerDocument,
+        document: ClaimTokensByOwnerDocument,
         get rawSDL() {
-          return printWithCache(FractionsByOwnerDocument);
+          return printWithCache(ClaimTokensByOwnerDocument);
         },
-        location: 'FractionsByOwnerDocument.graphql'
+        location: 'ClaimTokensByOwnerDocument.graphql'
       }
     ];
     },
@@ -737,53 +737,57 @@ export type ClaimsByOwnerQueryVariables = Exact<{
 }>;
 
 
-export type ClaimsByOwnerQuery = { claims: Array<Pick<Claim, 'owner' | 'totalUnits' | 'uri'>> };
+export type ClaimsByOwnerQuery = { claims: Array<Pick<Claim, 'contract' | 'creator' | 'id' | 'owner' | 'totalUnits' | 'uri'>> };
 
-export type FirstClaimsQueryVariables = Exact<{ [key: string]: never; }>;
+export type RecentClaimsQueryVariables = Exact<{
+  first?: InputMaybe<Scalars['Int']>;
+}>;
 
 
-export type FirstClaimsQuery = { claims: Array<Pick<Claim, 'owner' | 'totalUnits' | 'uri'>> };
+export type RecentClaimsQuery = { claims: Array<Pick<Claim, 'contract' | 'creator' | 'id' | 'owner' | 'totalUnits' | 'uri'>> };
 
-export type FractionsByOwnerQueryVariables = Exact<{
+export type ClaimTokensByOwnerQueryVariables = Exact<{
   owner?: InputMaybe<Scalars['Bytes']>;
 }>;
 
 
-export type FractionsByOwnerQuery = { claimFractions: Array<(
-    Pick<ClaimFraction, 'units' | 'tokenID'>
-    & { claim?: Maybe<Pick<Claim, 'uri'>> }
-  )> };
+export type ClaimTokensByOwnerQuery = { claimTokens: Array<Pick<ClaimToken, 'id' | 'owner' | 'tokenID' | 'units'>> };
 
 
 export const ClaimsByOwnerDocument = gql`
     query ClaimsByOwner($owner: Bytes = "") {
-  claims(first: 10, where: {owner: $owner}) {
+  claims(where: {owner: $owner}) {
+    contract
+    creator
+    id
     owner
     totalUnits
     uri
   }
 }
     ` as unknown as DocumentNode<ClaimsByOwnerQuery, ClaimsByOwnerQueryVariables>;
-export const FirstClaimsDocument = gql`
-    query FirstClaims {
-  claims(first: 100) {
+export const RecentClaimsDocument = gql`
+    query RecentClaims($first: Int = 10) {
+  claims(orderDirection: desc, orderBy: id, first: $first) {
+    contract
+    creator
+    id
     owner
     totalUnits
     uri
   }
 }
-    ` as unknown as DocumentNode<FirstClaimsQuery, FirstClaimsQueryVariables>;
-export const FractionsByOwnerDocument = gql`
-    query FractionsByOwner($owner: Bytes = "") {
-  claimFractions(where: {owner: $owner}) {
-    claim {
-      uri
-    }
-    units
+    ` as unknown as DocumentNode<RecentClaimsQuery, RecentClaimsQueryVariables>;
+export const ClaimTokensByOwnerDocument = gql`
+    query ClaimTokensByOwner($owner: Bytes = "") {
+  claimTokens(where: {owner: $owner}) {
+    id
+    owner
     tokenID
+    units
   }
 }
-    ` as unknown as DocumentNode<FractionsByOwnerQuery, FractionsByOwnerQueryVariables>;
+    ` as unknown as DocumentNode<ClaimTokensByOwnerQuery, ClaimTokensByOwnerQueryVariables>;
 
 
 
@@ -794,11 +798,11 @@ export function getSdk<C, E>(requester: Requester<C, E>) {
     ClaimsByOwner(variables?: ClaimsByOwnerQueryVariables, options?: C): Promise<ClaimsByOwnerQuery> {
       return requester<ClaimsByOwnerQuery, ClaimsByOwnerQueryVariables>(ClaimsByOwnerDocument, variables, options) as Promise<ClaimsByOwnerQuery>;
     },
-    FirstClaims(variables?: FirstClaimsQueryVariables, options?: C): Promise<FirstClaimsQuery> {
-      return requester<FirstClaimsQuery, FirstClaimsQueryVariables>(FirstClaimsDocument, variables, options) as Promise<FirstClaimsQuery>;
+    RecentClaims(variables?: RecentClaimsQueryVariables, options?: C): Promise<RecentClaimsQuery> {
+      return requester<RecentClaimsQuery, RecentClaimsQueryVariables>(RecentClaimsDocument, variables, options) as Promise<RecentClaimsQuery>;
     },
-    FractionsByOwner(variables?: FractionsByOwnerQueryVariables, options?: C): Promise<FractionsByOwnerQuery> {
-      return requester<FractionsByOwnerQuery, FractionsByOwnerQueryVariables>(FractionsByOwnerDocument, variables, options) as Promise<FractionsByOwnerQuery>;
+    ClaimTokensByOwner(variables?: ClaimTokensByOwnerQueryVariables, options?: C): Promise<ClaimTokensByOwnerQuery> {
+      return requester<ClaimTokensByOwnerQuery, ClaimTokensByOwnerQueryVariables>(ClaimTokensByOwnerDocument, variables, options) as Promise<ClaimTokensByOwnerQuery>;
     }
   };
 }

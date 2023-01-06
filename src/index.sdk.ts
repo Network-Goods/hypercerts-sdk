@@ -1,5 +1,5 @@
 import { mintHypercertToken } from "./minting";
-import { HypercertMinter, HypercertMinterABI } from "@bitbeckers/hypercerts-protocol";
+import { HypercertMinter, HypercertMinterABI } from "@network-goods/hypercerts-protocol";
 import { getMetadata } from "./operator";
 import { execute } from "../.graphclient";
 import { claimsByOwner, firstClaims } from "./claims";
