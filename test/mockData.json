@@ -1,0 +1,12 @@
+{
+  "name": "mock",
+  "description": "mock description",
+  "image": "image.jpg",
+  "properties": {
+    "impactScopes": "mock impact scope",
+    "workScopes": "mock work scope",
+    "impactTimeframe": [12345678, 87654321],
+    "workTimeframe": [87654321, 123456678],
+    "contributors": ["0x0", "vitalik"]
+  }
+}

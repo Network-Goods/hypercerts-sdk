@@ -1,9 +1,8 @@
-#query FractionsByOwner($owner: Bytes = "") {
-#  (where: { owner: $owner }) {
-#    claim {
-#      uri
-#    }
-#    units
-#    tokenID
-#  }
-#}
+query ClaimTokensByOwner($owner: Bytes = "") {
+  claimTokens(where: {owner: $owner}) {
+    id
+    owner
+    tokenID
+    units
+  }
+}

@@ -1,11 +1,11 @@
-import { execute, ClaimsByOwnerDocument, FirstClaimsDocument } from "../.graphclient";
+import { execute, ClaimsByOwnerDocument, RecentClaimsDocument } from "../.graphclient";
 
 const claimsByOwner = async (owner: string) => {
   return await execute(ClaimsByOwnerDocument, { owner });
 };
 
-const firstClaims = async () => {
-  return await execute(FirstClaimsDocument, {});
+const firstClaims = async (first: number) => {
+  return await execute(RecentClaimsDocument, { first });
 };
 
 export { claimsByOwner, firstClaims };

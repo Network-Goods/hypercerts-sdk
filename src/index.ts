@@ -12,7 +12,7 @@ import { fractionsByOwner } from "./fractions";
 export { execute, claimsByOwner, firstClaims, fractionsByOwner };
 
 // Protocol
-import { HyperCertMinterFactory, HypercertMinterABI } from "@bitbeckers/hypercerts-protocol";
+import { HyperCertMinterFactory, HypercertMinterABI } from "@network-goods/hypercerts-protocol";
 export { HyperCertMinterFactory, HypercertMinterABI };
 
 // Types
