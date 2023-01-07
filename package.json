@@ -51,21 +51,16 @@
     "graph:test": "echo \"Error: No tests\" && exit 1",
     "graph:watch": "graphql-codegen -w",
     "clean": "rm -rf ./lib",
-    "build": "npm run clean && npm run graph:build &&npm run build:esm && npm run build:cjs",
-    "build:esm": "tsc -p ./tsconfig.esm.json && mv ./lib/esm/src/index.js ./lib/esm/src/index.mjs",
-    "build:cjs": "tsc -p ./tsconfig.cjs.json",
+    "build": "npm run clean && npm run graph:build &&npm run build:esm",
+    "build:esm": "tsc && mv ./lib/src/index.js ./lib/src/index.mjs",
     "prepack": "npm run build",
     "test": "ts-mocha -r dotenv/config test/*.ts"
   },
   "exports": {
     ".": {
       "import": {
-        "types": "./lib/esm/types/src/index.d.ts",
-        "default": "./lib/esm/src/index.mjs"
-      },
-      "require": {
-        "types": "./lib/cjs/types/src/index.d.ts",
-        "default": "./lib/cjs/src/index.js"
+        "types": "./lib/types/src/index.d.ts",
+        "default": "./lib/src/index.mjs"
       }
     }
   }

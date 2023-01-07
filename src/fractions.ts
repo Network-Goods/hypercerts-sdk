@@ -1,7 +1,7 @@
-import { execute, ClaimTokensByOwnerDocument, ClaimTokensByClaimDocument } from "../.graphclient";
+import { getBuiltGraphSDK } from "../.graphclient";
 
-export const fractionsByOwner = async (owner: string) => {
-  return await execute(ClaimTokensByOwnerDocument, { owner });
-};
+const sdk = getBuiltGraphSDK();
 
-export const fractionsByClaim = async (claimId: string) => execute(ClaimTokensByClaimDocument, { claimId });
+export const fractionsByOwner = async (owner: string) => sdk.ClaimTokensByOwner({ owner });
+
+export const fractionsByClaim = async (claimId: string) => sdk.ClaimTokensByClaim({ claimId });

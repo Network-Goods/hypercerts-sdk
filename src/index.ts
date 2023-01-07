@@ -1,8 +1,8 @@
 // Validation
 import { validateMetaData, validateClaimData } from "./validator";
-import { storeMetadata, getMetadata } from "./operator";
+import { storeMetadata, storeData, getMetadata, deleteMetadata } from "./operator";
 
-export { validateMetaData, validateClaimData, storeMetadata, getMetadata };
+export { validateMetaData, validateClaimData, storeMetadata, storeData, getMetadata, deleteMetadata };
 
 // Graph
 import { execute } from "../.graphclient";
