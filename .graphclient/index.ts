@@ -689,11 +689,23 @@ const merger = new(BareMerger as any)({
         },
         location: 'RecentClaimsDocument.graphql'
       },{
+        document: ClaimByIdDocument,
+        get rawSDL() {
+          return printWithCache(ClaimByIdDocument);
+        },
+        location: 'ClaimByIdDocument.graphql'
+      },{
         document: ClaimTokensByOwnerDocument,
         get rawSDL() {
           return printWithCache(ClaimTokensByOwnerDocument);
         },
         location: 'ClaimTokensByOwnerDocument.graphql'
+      },{
+        document: ClaimTokensByClaimDocument,
+        get rawSDL() {
+          return printWithCache(ClaimTokensByClaimDocument);
+        },
+        location: 'ClaimTokensByClaimDocument.graphql'
       }
     ];
     },
@@ -746,12 +758,26 @@ export type RecentClaimsQueryVariables = Exact<{
 
 export type RecentClaimsQuery = { claims: Array<Pick<Claim, 'contract' | 'creator' | 'id' | 'owner' | 'totalUnits' | 'uri'>> };
 
+export type ClaimByIdQueryVariables = Exact<{
+  id: Scalars['ID'];
+}>;
+
+
+export type ClaimByIdQuery = { claim?: Maybe<Pick<Claim, 'contract' | 'creator' | 'id' | 'owner' | 'totalUnits' | 'uri'>> };
+
 export type ClaimTokensByOwnerQueryVariables = Exact<{
   owner?: InputMaybe<Scalars['Bytes']>;
 }>;
 
 
 export type ClaimTokensByOwnerQuery = { claimTokens: Array<Pick<ClaimToken, 'id' | 'owner' | 'tokenID' | 'units'>> };
+
+export type ClaimTokensByClaimQueryVariables = Exact<{
+  claimId: Scalars['String'];
+}>;
+
+
+export type ClaimTokensByClaimQuery = { claimTokens: Array<Pick<ClaimToken, 'id' | 'owner' | 'tokenID' | 'units'>> };
 
 
 export const ClaimsByOwnerDocument = gql`
@@ -778,6 +804,18 @@ export const RecentClaimsDocument = gql`
   }
 }
     ` as unknown as DocumentNode<RecentClaimsQuery, RecentClaimsQueryVariables>;
+export const ClaimByIdDocument = gql`
+    query ClaimById($id: ID!) {
+  claim(id: $id) {
+    contract
+    creator
+    id
+    owner
+    totalUnits
+    uri
+  }
+}
+    ` as unknown as DocumentNode<ClaimByIdQuery, ClaimByIdQueryVariables>;
 export const ClaimTokensByOwnerDocument = gql`
     query ClaimTokensByOwner($owner: Bytes = "") {
   claimTokens(where: {owner: $owner}) {
@@ -788,6 +826,18 @@ export const ClaimTokensByOwnerDocument = gql`
   }
 }
     ` as unknown as DocumentNode<ClaimTokensByOwnerQuery, ClaimTokensByOwnerQueryVariables>;
+export const ClaimTokensByClaimDocument = gql`
+    query ClaimTokensByClaim($claimId: String!) {
+  claimTokens(where: {claim: $claimId}) {
+    id
+    owner
+    tokenID
+    units
+  }
+}
+    ` as unknown as DocumentNode<ClaimTokensByClaimQuery, ClaimTokensByClaimQueryVariables>;
+
+
 
 
 
@@ -801,8 +851,14 @@ export function getSdk<C, E>(requester: Requester<C, E>) {
     RecentClaims(variables?: RecentClaimsQueryVariables, options?: C): Promise<RecentClaimsQuery> {
       return requester<RecentClaimsQuery, RecentClaimsQueryVariables>(RecentClaimsDocument, variables, options) as Promise<RecentClaimsQuery>;
     },
+    ClaimById(variables: ClaimByIdQueryVariables, options?: C): Promise<ClaimByIdQuery> {
+      return requester<ClaimByIdQuery, ClaimByIdQueryVariables>(ClaimByIdDocument, variables, options) as Promise<ClaimByIdQuery>;
+    },
     ClaimTokensByOwner(variables?: ClaimTokensByOwnerQueryVariables, options?: C): Promise<ClaimTokensByOwnerQuery> {
       return requester<ClaimTokensByOwnerQuery, ClaimTokensByOwnerQueryVariables>(ClaimTokensByOwnerDocument, variables, options) as Promise<ClaimTokensByOwnerQuery>;
+    },
+    ClaimTokensByClaim(variables: ClaimTokensByClaimQueryVariables, options?: C): Promise<ClaimTokensByClaimQuery> {
+      return requester<ClaimTokensByClaimQuery, ClaimTokensByClaimQueryVariables>(ClaimTokensByClaimDocument, variables, options) as Promise<ClaimTokensByClaimQuery>;
     }
   };
 }

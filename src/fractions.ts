@@ -1,7 +1,7 @@
-import { execute, ClaimTokensByOwnerDocument } from "../.graphclient";
+import { execute, ClaimTokensByOwnerDocument, ClaimTokensByClaimDocument } from "../.graphclient";
 
-const fractionsByOwner = async (owner: string) => {
+export const fractionsByOwner = async (owner: string) => {
   return await execute(ClaimTokensByOwnerDocument, { owner });
 };
 
-export { fractionsByOwner };
+export const fractionsByClaim = async (claimId: string) => execute(ClaimTokensByClaimDocument, { claimId });

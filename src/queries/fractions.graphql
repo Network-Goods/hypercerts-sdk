@@ -1,8 +1,17 @@
 query ClaimTokensByOwner($owner: Bytes = "") {
-  claimTokens(where: {owner: $owner}) {
-    id
-    owner
-    tokenID
-    units
-  }
+    claimTokens(where: {owner: $owner}) {
+        id
+        owner
+        tokenID
+        units
+    }
+}
+
+query ClaimTokensByClaim($claimId: String!) {
+    claimTokens(where: { claim: $claimId }) {
+        id
+        owner
+        tokenID
+        units
+    }
 }

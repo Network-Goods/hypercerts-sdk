@@ -1,6 +1,6 @@
 {
   "name": "@network-goods/hypercerts-sdk",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "SDK for hypercerts protocol",
   "repository": "git@github.com:Network-Goods/hypercerts-sdk.git",
   "author": "Network Goods",

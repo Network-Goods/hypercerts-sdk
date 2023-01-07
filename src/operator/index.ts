@@ -5,7 +5,7 @@ import axios from "axios";
 
 // NFT.Storage
 const NFT_STORAGE_TOKEN = process.env.NFT_STORAGE_TOKEN ?? "MISSING_TOKEN";
-const NFT_STORAGE_IPFS_GATEWAY = "https://{cid}.ipfs.nftstorage.link/";
+const NFT_STORAGE_IPFS_GATEWAY = "https://nftstorage.link/ipfs/{cid}";
 const defaultNftStorageClient = new NFTStorage({ token: NFT_STORAGE_TOKEN });
 
 export const storeMetadata = async (data: HypercertMetadata, targetClient?: NFTStorage): Promise<CIDString> => {
@@ -23,7 +23,10 @@ export const getMetadata = async (cid: string) => {
   return axios
     .get<HypercertMetadata>(nftStorageGatewayLink)
     .then((result) => result.data)
-    .catch((err) => console.error(err));
+    .catch((err) => {
+      console.error(err);
+      return null;
+    });
 };
 
 export const deleteMetadata = async (cid: string, targetClient?: NFTStorage) => {
