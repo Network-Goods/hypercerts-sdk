@@ -17,18 +17,34 @@ export const storeMetadata = async (data: HypercertMetadata, targetClient?: NFTS
   return await client.storeBlob(blob);
 };
 
-export const storeData = async (data: Blob, targetClient?: NFTStorage): Promise<CIDString> => {
-  console.log("Storing blob: ", data);
-  const client = targetClient ?? defaultNftStorageClient;
-
-  return await client.storeBlob(data);
-};
-
+//TODO handle returned errors from gateway
 export const getMetadata = async (cid: string) => {
   const nftStorageGatewayLink = NFT_STORAGE_IPFS_GATEWAY.replace("{cid}", cid);
   console.log(`Getting metadata ${cid} at ${nftStorageGatewayLink}`);
   return axios
     .get<HypercertMetadata>(nftStorageGatewayLink)
+    .then((result) => result.data)
+    .catch((err) => {
+      console.error(err);
+      return null;
+    });
+};
+
+export const storeData = async (data: any, targetClient?: NFTStorage): Promise<CIDString> => {
+  const client = targetClient ?? defaultNftStorageClient;
+
+  const blob = new Blob([JSON.stringify(data)], { type: "application/json" });
+  console.log("Storing blob: ", blob);
+
+  return await client.storeBlob(blob);
+};
+
+//TODO risky method?
+export const getData = async (cid: string) => {
+  const nftStorageGatewayLink = NFT_STORAGE_IPFS_GATEWAY.replace("{cid}", cid);
+  console.log(`Getting  data ${cid} at ${nftStorageGatewayLink}`);
+  return axios
+    .get(nftStorageGatewayLink)
     .then((result) => result.data)
     .catch((err) => {
       console.error(err);

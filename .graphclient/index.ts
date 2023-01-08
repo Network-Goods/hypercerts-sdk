@@ -3,18 +3,7 @@ import { GraphQLResolveInfo, SelectionSetNode, FieldNode, GraphQLScalarType, Gra
 import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core';
 import { gql } from '@graphql-mesh/utils';
 
-import type { GetMeshOptions } from '@graphql-mesh/runtime';
-import type { YamlConfig } from '@graphql-mesh/types';
-import { PubSub } from '@graphql-mesh/utils';
-import { DefaultLogger } from '@graphql-mesh/utils';
-import MeshCache from "@graphql-mesh/cache-localforage";
-import { fetch as fetchFn } from '@whatwg-node/fetch';
-
-import { MeshResolvedSource } from '@graphql-mesh/runtime';
-import { MeshTransform, MeshPlugin } from '@graphql-mesh/types';
-import GraphqlHandler from "@graphql-mesh/graphql"
-import BareMerger from "@graphql-mesh/merger-bare";
-import { printWithCache } from '@graphql-mesh/utils';
+import { findAndParseConfig } from '@graphql-mesh/cli';
 import { createMeshHTTPHandler, MeshHTTPHandler } from '@graphql-mesh/http';
 import { getMesh, ExecuteMeshFn, SubscribeMeshFn, MeshContext as BaseMeshContext, MeshInstance } from '@graphql-mesh/runtime';
 import { MeshStore, FsStoreStorageAdapter } from '@graphql-mesh/store';
@@ -41,6 +30,69 @@ export type Scalars = {
   BigInt: any;
   Bytes: any;
 };
+
+export type Allowlist = {
+  id: Scalars['String'];
+  root: Scalars['Bytes'];
+  claim: Claim;
+};
+
+export type Allowlist_filter = {
+  id?: InputMaybe<Scalars['String']>;
+  id_not?: InputMaybe<Scalars['String']>;
+  id_gt?: InputMaybe<Scalars['String']>;
+  id_lt?: InputMaybe<Scalars['String']>;
+  id_gte?: InputMaybe<Scalars['String']>;
+  id_lte?: InputMaybe<Scalars['String']>;
+  id_in?: InputMaybe<Array<Scalars['String']>>;
+  id_not_in?: InputMaybe<Array<Scalars['String']>>;
+  id_contains?: InputMaybe<Scalars['String']>;
+  id_contains_nocase?: InputMaybe<Scalars['String']>;
+  id_not_contains?: InputMaybe<Scalars['String']>;
+  id_not_contains_nocase?: InputMaybe<Scalars['String']>;
+  id_starts_with?: InputMaybe<Scalars['String']>;
+  id_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  id_not_starts_with?: InputMaybe<Scalars['String']>;
+  id_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  id_ends_with?: InputMaybe<Scalars['String']>;
+  id_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  id_not_ends_with?: InputMaybe<Scalars['String']>;
+  id_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  root?: InputMaybe<Scalars['Bytes']>;
+  root_not?: InputMaybe<Scalars['Bytes']>;
+  root_in?: InputMaybe<Array<Scalars['Bytes']>>;
+  root_not_in?: InputMaybe<Array<Scalars['Bytes']>>;
+  root_contains?: InputMaybe<Scalars['Bytes']>;
+  root_not_contains?: InputMaybe<Scalars['Bytes']>;
+  claim?: InputMaybe<Scalars['String']>;
+  claim_not?: InputMaybe<Scalars['String']>;
+  claim_gt?: InputMaybe<Scalars['String']>;
+  claim_lt?: InputMaybe<Scalars['String']>;
+  claim_gte?: InputMaybe<Scalars['String']>;
+  claim_lte?: InputMaybe<Scalars['String']>;
+  claim_in?: InputMaybe<Array<Scalars['String']>>;
+  claim_not_in?: InputMaybe<Array<Scalars['String']>>;
+  claim_contains?: InputMaybe<Scalars['String']>;
+  claim_contains_nocase?: InputMaybe<Scalars['String']>;
+  claim_not_contains?: InputMaybe<Scalars['String']>;
+  claim_not_contains_nocase?: InputMaybe<Scalars['String']>;
+  claim_starts_with?: InputMaybe<Scalars['String']>;
+  claim_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  claim_not_starts_with?: InputMaybe<Scalars['String']>;
+  claim_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  claim_ends_with?: InputMaybe<Scalars['String']>;
+  claim_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  claim_not_ends_with?: InputMaybe<Scalars['String']>;
+  claim_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  claim_?: InputMaybe<Claim_filter>;
+  /** Filter for the block changed event. */
+  _change_block?: InputMaybe<BlockChangedFilter>;
+};
+
+export type Allowlist_orderBy =
+  | 'id'
+  | 'root'
+  | 'claim';
 
 export type BlockChangedFilter = {
   number_gte: Scalars['Int'];
@@ -243,12 +295,32 @@ export type OrderDirection =
   | 'desc';
 
 export type Query = {
+  allowlist?: Maybe<Allowlist>;
+  allowlists: Array<Allowlist>;
   claim?: Maybe<Claim>;
   claims: Array<Claim>;
   claimToken?: Maybe<ClaimToken>;
   claimTokens: Array<ClaimToken>;
   /** Access to subgraph metadata */
   _meta?: Maybe<_Meta_>;
+};
+
+
+export type QueryallowlistArgs = {
+  id: Scalars['ID'];
+  block?: InputMaybe<Block_height>;
+  subgraphError?: _SubgraphErrorPolicy_;
+};
+
+
+export type QueryallowlistsArgs = {
+  skip?: InputMaybe<Scalars['Int']>;
+  first?: InputMaybe<Scalars['Int']>;
+  orderBy?: InputMaybe<Allowlist_orderBy>;
+  orderDirection?: InputMaybe<OrderDirection>;
+  where?: InputMaybe<Allowlist_filter>;
+  block?: InputMaybe<Block_height>;
+  subgraphError?: _SubgraphErrorPolicy_;
 };
 
 
@@ -293,12 +365,32 @@ export type Query_metaArgs = {
 };
 
 export type Subscription = {
+  allowlist?: Maybe<Allowlist>;
+  allowlists: Array<Allowlist>;
   claim?: Maybe<Claim>;
   claims: Array<Claim>;
   claimToken?: Maybe<ClaimToken>;
   claimTokens: Array<ClaimToken>;
   /** Access to subgraph metadata */
   _meta?: Maybe<_Meta_>;
+};
+
+
+export type SubscriptionallowlistArgs = {
+  id: Scalars['ID'];
+  block?: InputMaybe<Block_height>;
+  subgraphError?: _SubgraphErrorPolicy_;
+};
+
+
+export type SubscriptionallowlistsArgs = {
+  skip?: InputMaybe<Scalars['Int']>;
+  first?: InputMaybe<Scalars['Int']>;
+  orderBy?: InputMaybe<Allowlist_orderBy>;
+  orderDirection?: InputMaybe<OrderDirection>;
+  where?: InputMaybe<Allowlist_filter>;
+  block?: InputMaybe<Block_height>;
+  subgraphError?: _SubgraphErrorPolicy_;
 };
 
 
@@ -457,6 +549,9 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = ResolversObject<{
+  Allowlist: ResolverTypeWrapper<Allowlist>;
+  Allowlist_filter: Allowlist_filter;
+  Allowlist_orderBy: Allowlist_orderBy;
   BigDecimal: ResolverTypeWrapper<Scalars['BigDecimal']>;
   BigInt: ResolverTypeWrapper<Scalars['BigInt']>;
   BlockChangedFilter: BlockChangedFilter;
@@ -483,6 +578,8 @@ export type ResolversTypes = ResolversObject<{
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = ResolversObject<{
+  Allowlist: Allowlist;
+  Allowlist_filter: Allowlist_filter;
   BigDecimal: Scalars['BigDecimal'];
   BigInt: Scalars['BigInt'];
   BlockChangedFilter: BlockChangedFilter;
@@ -519,6 +616,13 @@ export type derivedFromDirectiveArgs = {
 
 export type derivedFromDirectiveResolver<Result, Parent, ContextType = MeshContext, Args = derivedFromDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
 
+export type AllowlistResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['Allowlist'] = ResolversParentTypes['Allowlist']> = ResolversObject<{
+  id?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  root?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
+  claim?: Resolver<ResolversTypes['Claim'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+}>;
+
 export interface BigDecimalScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['BigDecimal'], any> {
   name: 'BigDecimal';
 }
@@ -551,6 +655,8 @@ export type ClaimTokenResolvers<ContextType = MeshContext, ParentType extends Re
 }>;
 
 export type QueryResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = ResolversObject<{
+  allowlist?: Resolver<Maybe<ResolversTypes['Allowlist']>, ParentType, ContextType, RequireFields<QueryallowlistArgs, 'id' | 'subgraphError'>>;
+  allowlists?: Resolver<Array<ResolversTypes['Allowlist']>, ParentType, ContextType, RequireFields<QueryallowlistsArgs, 'skip' | 'first' | 'subgraphError'>>;
   claim?: Resolver<Maybe<ResolversTypes['Claim']>, ParentType, ContextType, RequireFields<QueryclaimArgs, 'id' | 'subgraphError'>>;
   claims?: Resolver<Array<ResolversTypes['Claim']>, ParentType, ContextType, RequireFields<QueryclaimsArgs, 'skip' | 'first' | 'subgraphError'>>;
   claimToken?: Resolver<Maybe<ResolversTypes['ClaimToken']>, ParentType, ContextType, RequireFields<QueryclaimTokenArgs, 'id' | 'subgraphError'>>;
@@ -559,6 +665,8 @@ export type QueryResolvers<ContextType = MeshContext, ParentType extends Resolve
 }>;
 
 export type SubscriptionResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['Subscription'] = ResolversParentTypes['Subscription']> = ResolversObject<{
+  allowlist?: SubscriptionResolver<Maybe<ResolversTypes['Allowlist']>, "allowlist", ParentType, ContextType, RequireFields<SubscriptionallowlistArgs, 'id' | 'subgraphError'>>;
+  allowlists?: SubscriptionResolver<Array<ResolversTypes['Allowlist']>, "allowlists", ParentType, ContextType, RequireFields<SubscriptionallowlistsArgs, 'skip' | 'first' | 'subgraphError'>>;
   claim?: SubscriptionResolver<Maybe<ResolversTypes['Claim']>, "claim", ParentType, ContextType, RequireFields<SubscriptionclaimArgs, 'id' | 'subgraphError'>>;
   claims?: SubscriptionResolver<Array<ResolversTypes['Claim']>, "claims", ParentType, ContextType, RequireFields<SubscriptionclaimsArgs, 'skip' | 'first' | 'subgraphError'>>;
   claimToken?: SubscriptionResolver<Maybe<ResolversTypes['ClaimToken']>, "claimToken", ParentType, ContextType, RequireFields<SubscriptionclaimTokenArgs, 'id' | 'subgraphError'>>;
@@ -581,6 +689,7 @@ export type _Meta_Resolvers<ContextType = MeshContext, ParentType extends Resolv
 }>;
 
 export type Resolvers<ContextType = MeshContext> = ResolversObject<{
+  Allowlist?: AllowlistResolvers<ContextType>;
   BigDecimal?: GraphQLScalarType;
   BigInt?: GraphQLScalarType;
   Bytes?: GraphQLScalarType;
@@ -607,9 +716,6 @@ const baseDir = pathModule.join(pathModule.dirname(fileURLToPath(import.meta.url
 const importFn: ImportFn = <T>(moduleId: string) => {
   const relativeModuleId = (pathModule.isAbsolute(moduleId) ? pathModule.relative(baseDir, moduleId) : moduleId).split('\\').join('/').replace(baseDir + '/', '');
   switch(relativeModuleId) {
-    case ".graphclient/sources/hypercerts-dev/introspectionSchema":
-      return import("./sources/hypercerts-dev/introspectionSchema") as T;
-    
     default:
       return Promise.reject(new Error(`Cannot find module '${relativeModuleId}'.`));
   }
@@ -624,94 +730,15 @@ const rootStore = new MeshStore('.graphclient', new FsStoreStorageAdapter({
   validate: false
 });
 
-export const rawServeConfig: YamlConfig.Config['serve'] = undefined as any
-export async function getMeshOptions(): Promise<GetMeshOptions> {
-const pubsub = new PubSub();
-const sourcesStore = rootStore.child('sources');
-const logger = new DefaultLogger("GraphClient");
-const cache = new (MeshCache as any)({
-      ...({} as any),
-      importFn,
-      store: rootStore.child('cache'),
-      pubsub,
-      logger,
-    } as any)
-
-const sources: MeshResolvedSource[] = [];
-const transforms: MeshTransform[] = [];
-const additionalEnvelopPlugins: MeshPlugin<any>[] = [];
-const hypercertsDevTransforms = [];
-const additionalTypeDefs = [] as any[];
-const hypercertsDevHandler = new GraphqlHandler({
-              name: "hypercerts-dev",
-              config: {"endpoint":"https://api.thegraph.com/subgraphs/name/bitbeckers/hypercerts-dev"},
-              baseDir,
-              cache,
-              pubsub,
-              store: sourcesStore.child("hypercerts-dev"),
-              logger: logger.child("hypercerts-dev"),
-              importFn,
-            });
-sources[0] = {
-          name: 'hypercerts-dev',
-          handler: hypercertsDevHandler,
-          transforms: hypercertsDevTransforms
-        }
-const additionalResolvers = [] as any[]
-const merger = new(BareMerger as any)({
-        cache,
-        pubsub,
-        logger: logger.child('bareMerger'),
-        store: rootStore.child('bareMerger')
-      })
-
-  return {
-    sources,
-    transforms,
-    additionalTypeDefs,
-    additionalResolvers,
-    cache,
-    pubsub,
-    merger,
-    logger,
-    additionalEnvelopPlugins,
-    get documents() {
-      return [
-      {
-        document: ClaimsByOwnerDocument,
-        get rawSDL() {
-          return printWithCache(ClaimsByOwnerDocument);
-        },
-        location: 'ClaimsByOwnerDocument.graphql'
-      },{
-        document: RecentClaimsDocument,
-        get rawSDL() {
-          return printWithCache(RecentClaimsDocument);
-        },
-        location: 'RecentClaimsDocument.graphql'
-      },{
-        document: ClaimByIdDocument,
-        get rawSDL() {
-          return printWithCache(ClaimByIdDocument);
-        },
-        location: 'ClaimByIdDocument.graphql'
-      },{
-        document: ClaimTokensByOwnerDocument,
-        get rawSDL() {
-          return printWithCache(ClaimTokensByOwnerDocument);
-        },
-        location: 'ClaimTokensByOwnerDocument.graphql'
-      },{
-        document: ClaimTokensByClaimDocument,
-        get rawSDL() {
-          return printWithCache(ClaimTokensByClaimDocument);
-        },
-        location: 'ClaimTokensByClaimDocument.graphql'
-      }
-    ];
-    },
-    fetchFn,
-  };
+export function getMeshOptions() {
+  console.warn('WARNING: These artifacts are built for development mode. Please run "graphclient build" to build production artifacts');
+  return findAndParseConfig({
+    dir: baseDir,
+    artifactsDir: ".graphclient",
+    configName: "graphclient",
+    additionalPackagePrefixes: ["@graphprotocol/client-"],
+    initialLoggerPrefix: "GraphClient",
+  });
 }
 
 export function createBuiltMeshHTTPHandler(): MeshHTTPHandler<MeshContext> {
@@ -721,7 +748,6 @@ export function createBuiltMeshHTTPHandler(): MeshHTTPHandler<MeshContext> {
     rawServeConfig: undefined,
   })
 }
-
 
 let meshInstance$: Promise<MeshInstance> | undefined;
 

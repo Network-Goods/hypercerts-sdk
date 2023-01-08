@@ -21,6 +21,69 @@ export type Scalars = {
   Bytes: any;
 };
 
+export type Allowlist = {
+  id: Scalars['String'];
+  root: Scalars['Bytes'];
+  claim: Claim;
+};
+
+export type Allowlist_filter = {
+  id?: InputMaybe<Scalars['String']>;
+  id_not?: InputMaybe<Scalars['String']>;
+  id_gt?: InputMaybe<Scalars['String']>;
+  id_lt?: InputMaybe<Scalars['String']>;
+  id_gte?: InputMaybe<Scalars['String']>;
+  id_lte?: InputMaybe<Scalars['String']>;
+  id_in?: InputMaybe<Array<Scalars['String']>>;
+  id_not_in?: InputMaybe<Array<Scalars['String']>>;
+  id_contains?: InputMaybe<Scalars['String']>;
+  id_contains_nocase?: InputMaybe<Scalars['String']>;
+  id_not_contains?: InputMaybe<Scalars['String']>;
+  id_not_contains_nocase?: InputMaybe<Scalars['String']>;
+  id_starts_with?: InputMaybe<Scalars['String']>;
+  id_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  id_not_starts_with?: InputMaybe<Scalars['String']>;
+  id_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  id_ends_with?: InputMaybe<Scalars['String']>;
+  id_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  id_not_ends_with?: InputMaybe<Scalars['String']>;
+  id_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  root?: InputMaybe<Scalars['Bytes']>;
+  root_not?: InputMaybe<Scalars['Bytes']>;
+  root_in?: InputMaybe<Array<Scalars['Bytes']>>;
+  root_not_in?: InputMaybe<Array<Scalars['Bytes']>>;
+  root_contains?: InputMaybe<Scalars['Bytes']>;
+  root_not_contains?: InputMaybe<Scalars['Bytes']>;
+  claim?: InputMaybe<Scalars['String']>;
+  claim_not?: InputMaybe<Scalars['String']>;
+  claim_gt?: InputMaybe<Scalars['String']>;
+  claim_lt?: InputMaybe<Scalars['String']>;
+  claim_gte?: InputMaybe<Scalars['String']>;
+  claim_lte?: InputMaybe<Scalars['String']>;
+  claim_in?: InputMaybe<Array<Scalars['String']>>;
+  claim_not_in?: InputMaybe<Array<Scalars['String']>>;
+  claim_contains?: InputMaybe<Scalars['String']>;
+  claim_contains_nocase?: InputMaybe<Scalars['String']>;
+  claim_not_contains?: InputMaybe<Scalars['String']>;
+  claim_not_contains_nocase?: InputMaybe<Scalars['String']>;
+  claim_starts_with?: InputMaybe<Scalars['String']>;
+  claim_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  claim_not_starts_with?: InputMaybe<Scalars['String']>;
+  claim_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  claim_ends_with?: InputMaybe<Scalars['String']>;
+  claim_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  claim_not_ends_with?: InputMaybe<Scalars['String']>;
+  claim_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  claim_?: InputMaybe<Claim_filter>;
+  /** Filter for the block changed event. */
+  _change_block?: InputMaybe<BlockChangedFilter>;
+};
+
+export type Allowlist_orderBy =
+  | 'id'
+  | 'root'
+  | 'claim';
+
 export type BlockChangedFilter = {
   number_gte: Scalars['Int'];
 };
@@ -222,12 +285,32 @@ export type OrderDirection =
   | 'desc';
 
 export type Query = {
+  allowlist?: Maybe<Allowlist>;
+  allowlists: Array<Allowlist>;
   claim?: Maybe<Claim>;
   claims: Array<Claim>;
   claimToken?: Maybe<ClaimToken>;
   claimTokens: Array<ClaimToken>;
   /** Access to subgraph metadata */
   _meta?: Maybe<_Meta_>;
+};
+
+
+export type QueryallowlistArgs = {
+  id: Scalars['ID'];
+  block?: InputMaybe<Block_height>;
+  subgraphError?: _SubgraphErrorPolicy_;
+};
+
+
+export type QueryallowlistsArgs = {
+  skip?: InputMaybe<Scalars['Int']>;
+  first?: InputMaybe<Scalars['Int']>;
+  orderBy?: InputMaybe<Allowlist_orderBy>;
+  orderDirection?: InputMaybe<OrderDirection>;
+  where?: InputMaybe<Allowlist_filter>;
+  block?: InputMaybe<Block_height>;
+  subgraphError?: _SubgraphErrorPolicy_;
 };
 
 
@@ -272,12 +355,32 @@ export type Query_metaArgs = {
 };
 
 export type Subscription = {
+  allowlist?: Maybe<Allowlist>;
+  allowlists: Array<Allowlist>;
   claim?: Maybe<Claim>;
   claims: Array<Claim>;
   claimToken?: Maybe<ClaimToken>;
   claimTokens: Array<ClaimToken>;
   /** Access to subgraph metadata */
   _meta?: Maybe<_Meta_>;
+};
+
+
+export type SubscriptionallowlistArgs = {
+  id: Scalars['ID'];
+  block?: InputMaybe<Block_height>;
+  subgraphError?: _SubgraphErrorPolicy_;
+};
+
+
+export type SubscriptionallowlistsArgs = {
+  skip?: InputMaybe<Scalars['Int']>;
+  first?: InputMaybe<Scalars['Int']>;
+  orderBy?: InputMaybe<Allowlist_orderBy>;
+  orderDirection?: InputMaybe<OrderDirection>;
+  where?: InputMaybe<Allowlist_filter>;
+  block?: InputMaybe<Block_height>;
+  subgraphError?: _SubgraphErrorPolicy_;
 };
 
 
@@ -354,6 +457,10 @@ export type _SubgraphErrorPolicy_ =
 
   export type QuerySdk = {
       /** null **/
+  allowlist: InContextSdkMethod<Query['allowlist'], QueryallowlistArgs, MeshContext>,
+  /** null **/
+  allowlists: InContextSdkMethod<Query['allowlists'], QueryallowlistsArgs, MeshContext>,
+  /** null **/
   claim: InContextSdkMethod<Query['claim'], QueryclaimArgs, MeshContext>,
   /** null **/
   claims: InContextSdkMethod<Query['claims'], QueryclaimsArgs, MeshContext>,
@@ -371,6 +478,10 @@ export type _SubgraphErrorPolicy_ =
 
   export type SubscriptionSdk = {
       /** null **/
+  allowlist: InContextSdkMethod<Subscription['allowlist'], SubscriptionallowlistArgs, MeshContext>,
+  /** null **/
+  allowlists: InContextSdkMethod<Subscription['allowlists'], SubscriptionallowlistsArgs, MeshContext>,
+  /** null **/
   claim: InContextSdkMethod<Subscription['claim'], SubscriptionclaimArgs, MeshContext>,
   /** null **/
   claims: InContextSdkMethod<Subscription['claims'], SubscriptionclaimsArgs, MeshContext>,

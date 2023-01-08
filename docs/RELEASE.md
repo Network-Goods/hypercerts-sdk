@@ -3,7 +3,9 @@
 ## 0.0.5
 
 * Added `storeData` to upload Blobs to IPFS for non-metadata data upload
+* Added `getData` to retrieve those blobs
 * Refactored GraphQL queries to use graphclient generated SDK for better typings
+
 
 ## 0.0.4
 
