@@ -1137,6 +1137,25 @@ const schemaAST = {
           "kind": "FieldDefinition",
           "name": {
             "kind": "Name",
+            "value": "tokenID"
+          },
+          "arguments": [],
+          "type": {
+            "kind": "NonNullType",
+            "type": {
+              "kind": "NamedType",
+              "name": {
+                "kind": "Name",
+                "value": "BigInt"
+              }
+            }
+          },
+          "directives": []
+        },
+        {
+          "kind": "FieldDefinition",
+          "name": {
+            "kind": "Name",
             "value": "contract"
           },
           "arguments": [],
@@ -2734,6 +2753,138 @@ const schemaAST = {
           "kind": "InputValueDefinition",
           "name": {
             "kind": "Name",
+            "value": "tokenID"
+          },
+          "type": {
+            "kind": "NamedType",
+            "name": {
+              "kind": "Name",
+              "value": "BigInt"
+            }
+          },
+          "directives": []
+        },
+        {
+          "kind": "InputValueDefinition",
+          "name": {
+            "kind": "Name",
+            "value": "tokenID_not"
+          },
+          "type": {
+            "kind": "NamedType",
+            "name": {
+              "kind": "Name",
+              "value": "BigInt"
+            }
+          },
+          "directives": []
+        },
+        {
+          "kind": "InputValueDefinition",
+          "name": {
+            "kind": "Name",
+            "value": "tokenID_gt"
+          },
+          "type": {
+            "kind": "NamedType",
+            "name": {
+              "kind": "Name",
+              "value": "BigInt"
+            }
+          },
+          "directives": []
+        },
+        {
+          "kind": "InputValueDefinition",
+          "name": {
+            "kind": "Name",
+            "value": "tokenID_lt"
+          },
+          "type": {
+            "kind": "NamedType",
+            "name": {
+              "kind": "Name",
+              "value": "BigInt"
+            }
+          },
+          "directives": []
+        },
+        {
+          "kind": "InputValueDefinition",
+          "name": {
+            "kind": "Name",
+            "value": "tokenID_gte"
+          },
+          "type": {
+            "kind": "NamedType",
+            "name": {
+              "kind": "Name",
+              "value": "BigInt"
+            }
+          },
+          "directives": []
+        },
+        {
+          "kind": "InputValueDefinition",
+          "name": {
+            "kind": "Name",
+            "value": "tokenID_lte"
+          },
+          "type": {
+            "kind": "NamedType",
+            "name": {
+              "kind": "Name",
+              "value": "BigInt"
+            }
+          },
+          "directives": []
+        },
+        {
+          "kind": "InputValueDefinition",
+          "name": {
+            "kind": "Name",
+            "value": "tokenID_in"
+          },
+          "type": {
+            "kind": "ListType",
+            "type": {
+              "kind": "NonNullType",
+              "type": {
+                "kind": "NamedType",
+                "name": {
+                  "kind": "Name",
+                  "value": "BigInt"
+                }
+              }
+            }
+          },
+          "directives": []
+        },
+        {
+          "kind": "InputValueDefinition",
+          "name": {
+            "kind": "Name",
+            "value": "tokenID_not_in"
+          },
+          "type": {
+            "kind": "ListType",
+            "type": {
+              "kind": "NonNullType",
+              "type": {
+                "kind": "NamedType",
+                "name": {
+                  "kind": "Name",
+                  "value": "BigInt"
+                }
+              }
+            }
+          },
+          "directives": []
+        },
+        {
+          "kind": "InputValueDefinition",
+          "name": {
+            "kind": "Name",
             "value": "contract"
           },
           "type": {
@@ -3725,6 +3876,14 @@ const schemaAST = {
           "name": {
             "kind": "Name",
             "value": "id"
+          },
+          "directives": []
+        },
+        {
+          "kind": "EnumValueDefinition",
+          "name": {
+            "kind": "Name",
+            "value": "tokenID"
           },
           "directives": []
         },

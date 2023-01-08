@@ -3,7 +3,18 @@ import { GraphQLResolveInfo, SelectionSetNode, FieldNode, GraphQLScalarType, Gra
 import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core';
 import { gql } from '@graphql-mesh/utils';
 
-import { findAndParseConfig } from '@graphql-mesh/cli';
+import type { GetMeshOptions } from '@graphql-mesh/runtime';
+import type { YamlConfig } from '@graphql-mesh/types';
+import { PubSub } from '@graphql-mesh/utils';
+import { DefaultLogger } from '@graphql-mesh/utils';
+import MeshCache from "@graphql-mesh/cache-localforage";
+import { fetch as fetchFn } from '@whatwg-node/fetch';
+
+import { MeshResolvedSource } from '@graphql-mesh/runtime';
+import { MeshTransform, MeshPlugin } from '@graphql-mesh/types';
+import GraphqlHandler from "@graphql-mesh/graphql"
+import BareMerger from "@graphql-mesh/merger-bare";
+import { printWithCache } from '@graphql-mesh/utils';
 import { createMeshHTTPHandler, MeshHTTPHandler } from '@graphql-mesh/http';
 import { getMesh, ExecuteMeshFn, SubscribeMeshFn, MeshContext as BaseMeshContext, MeshInstance } from '@graphql-mesh/runtime';
 import { MeshStore, FsStoreStorageAdapter } from '@graphql-mesh/store';
@@ -106,6 +117,7 @@ export type Block_height = {
 
 export type Claim = {
   id: Scalars['String'];
+  tokenID: Scalars['BigInt'];
   contract: Scalars['String'];
   uri?: Maybe<Scalars['String']>;
   creator?: Maybe<Scalars['Bytes']>;
@@ -217,6 +229,14 @@ export type Claim_filter = {
   id_ends_with_nocase?: InputMaybe<Scalars['String']>;
   id_not_ends_with?: InputMaybe<Scalars['String']>;
   id_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  tokenID?: InputMaybe<Scalars['BigInt']>;
+  tokenID_not?: InputMaybe<Scalars['BigInt']>;
+  tokenID_gt?: InputMaybe<Scalars['BigInt']>;
+  tokenID_lt?: InputMaybe<Scalars['BigInt']>;
+  tokenID_gte?: InputMaybe<Scalars['BigInt']>;
+  tokenID_lte?: InputMaybe<Scalars['BigInt']>;
+  tokenID_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  tokenID_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
   contract?: InputMaybe<Scalars['String']>;
   contract_not?: InputMaybe<Scalars['String']>;
   contract_gt?: InputMaybe<Scalars['String']>;
@@ -283,6 +303,7 @@ export type Claim_filter = {
 
 export type Claim_orderBy =
   | 'id'
+  | 'tokenID'
   | 'contract'
   | 'uri'
   | 'creator'
@@ -637,6 +658,7 @@ export interface BytesScalarConfig extends GraphQLScalarTypeConfig<ResolversType
 
 export type ClaimResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['Claim'] = ResolversParentTypes['Claim']> = ResolversObject<{
   id?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  tokenID?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
   contract?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   uri?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   creator?: Resolver<Maybe<ResolversTypes['Bytes']>, ParentType, ContextType>;
@@ -716,6 +738,9 @@ const baseDir = pathModule.join(pathModule.dirname(fileURLToPath(import.meta.url
 const importFn: ImportFn = <T>(moduleId: string) => {
   const relativeModuleId = (pathModule.isAbsolute(moduleId) ? pathModule.relative(baseDir, moduleId) : moduleId).split('\\').join('/').replace(baseDir + '/', '');
   switch(relativeModuleId) {
+    case ".graphclient/sources/hypercerts-dev/introspectionSchema":
+      return import("./sources/hypercerts-dev/introspectionSchema") as T;
+    
     default:
       return Promise.reject(new Error(`Cannot find module '${relativeModuleId}'.`));
   }
@@ -730,15 +755,94 @@ const rootStore = new MeshStore('.graphclient', new FsStoreStorageAdapter({
   validate: false
 });
 
-export function getMeshOptions() {
-  console.warn('WARNING: These artifacts are built for development mode. Please run "graphclient build" to build production artifacts');
-  return findAndParseConfig({
-    dir: baseDir,
-    artifactsDir: ".graphclient",
-    configName: "graphclient",
-    additionalPackagePrefixes: ["@graphprotocol/client-"],
-    initialLoggerPrefix: "GraphClient",
-  });
+export const rawServeConfig: YamlConfig.Config['serve'] = undefined as any
+export async function getMeshOptions(): Promise<GetMeshOptions> {
+const pubsub = new PubSub();
+const sourcesStore = rootStore.child('sources');
+const logger = new DefaultLogger("GraphClient");
+const cache = new (MeshCache as any)({
+      ...({} as any),
+      importFn,
+      store: rootStore.child('cache'),
+      pubsub,
+      logger,
+    } as any)
+
+const sources: MeshResolvedSource[] = [];
+const transforms: MeshTransform[] = [];
+const additionalEnvelopPlugins: MeshPlugin<any>[] = [];
+const hypercertsDevTransforms = [];
+const additionalTypeDefs = [] as any[];
+const hypercertsDevHandler = new GraphqlHandler({
+              name: "hypercerts-dev",
+              config: {"endpoint":"https://api.thegraph.com/subgraphs/name/bitbeckers/hypercerts-dev"},
+              baseDir,
+              cache,
+              pubsub,
+              store: sourcesStore.child("hypercerts-dev"),
+              logger: logger.child("hypercerts-dev"),
+              importFn,
+            });
+sources[0] = {
+          name: 'hypercerts-dev',
+          handler: hypercertsDevHandler,
+          transforms: hypercertsDevTransforms
+        }
+const additionalResolvers = [] as any[]
+const merger = new(BareMerger as any)({
+        cache,
+        pubsub,
+        logger: logger.child('bareMerger'),
+        store: rootStore.child('bareMerger')
+      })
+
+  return {
+    sources,
+    transforms,
+    additionalTypeDefs,
+    additionalResolvers,
+    cache,
+    pubsub,
+    merger,
+    logger,
+    additionalEnvelopPlugins,
+    get documents() {
+      return [
+      {
+        document: ClaimsByOwnerDocument,
+        get rawSDL() {
+          return printWithCache(ClaimsByOwnerDocument);
+        },
+        location: 'ClaimsByOwnerDocument.graphql'
+      },{
+        document: RecentClaimsDocument,
+        get rawSDL() {
+          return printWithCache(RecentClaimsDocument);
+        },
+        location: 'RecentClaimsDocument.graphql'
+      },{
+        document: ClaimByIdDocument,
+        get rawSDL() {
+          return printWithCache(ClaimByIdDocument);
+        },
+        location: 'ClaimByIdDocument.graphql'
+      },{
+        document: ClaimTokensByOwnerDocument,
+        get rawSDL() {
+          return printWithCache(ClaimTokensByOwnerDocument);
+        },
+        location: 'ClaimTokensByOwnerDocument.graphql'
+      },{
+        document: ClaimTokensByClaimDocument,
+        get rawSDL() {
+          return printWithCache(ClaimTokensByClaimDocument);
+        },
+        location: 'ClaimTokensByClaimDocument.graphql'
+      }
+    ];
+    },
+    fetchFn,
+  };
 }
 
 export function createBuiltMeshHTTPHandler(): MeshHTTPHandler<MeshContext> {
@@ -748,6 +852,7 @@ export function createBuiltMeshHTTPHandler(): MeshHTTPHandler<MeshContext> {
     rawServeConfig: undefined,
   })
 }
+
 
 let meshInstance$: Promise<MeshInstance> | undefined;
 
@@ -776,21 +881,21 @@ export type ClaimsByOwnerQueryVariables = Exact<{
 }>;
 
 
-export type ClaimsByOwnerQuery = { claims: Array<Pick<Claim, 'contract' | 'creator' | 'id' | 'owner' | 'totalUnits' | 'uri'>> };
+export type ClaimsByOwnerQuery = { claims: Array<Pick<Claim, 'contract' | 'tokenID' | 'creator' | 'id' | 'owner' | 'totalUnits' | 'uri'>> };
 
 export type RecentClaimsQueryVariables = Exact<{
   first?: InputMaybe<Scalars['Int']>;
 }>;
 
 
-export type RecentClaimsQuery = { claims: Array<Pick<Claim, 'contract' | 'creator' | 'id' | 'owner' | 'totalUnits' | 'uri'>> };
+export type RecentClaimsQuery = { claims: Array<Pick<Claim, 'contract' | 'tokenID' | 'creator' | 'id' | 'owner' | 'totalUnits' | 'uri'>> };
 
 export type ClaimByIdQueryVariables = Exact<{
   id: Scalars['ID'];
 }>;
 
 
-export type ClaimByIdQuery = { claim?: Maybe<Pick<Claim, 'contract' | 'creator' | 'id' | 'owner' | 'totalUnits' | 'uri'>> };
+export type ClaimByIdQuery = { claim?: Maybe<Pick<Claim, 'contract' | 'tokenID' | 'creator' | 'id' | 'owner' | 'totalUnits' | 'uri'>> };
 
 export type ClaimTokensByOwnerQueryVariables = Exact<{
   owner?: InputMaybe<Scalars['Bytes']>;
@@ -811,6 +916,7 @@ export const ClaimsByOwnerDocument = gql`
     query ClaimsByOwner($owner: Bytes = "") {
   claims(where: {owner: $owner}) {
     contract
+    tokenID
     creator
     id
     owner
@@ -823,6 +929,7 @@ export const RecentClaimsDocument = gql`
     query RecentClaims($first: Int = 10) {
   claims(orderDirection: desc, orderBy: id, first: $first) {
     contract
+    tokenID
     creator
     id
     owner
@@ -835,6 +942,7 @@ export const ClaimByIdDocument = gql`
     query ClaimById($id: ID!) {
   claim(id: $id) {
     contract
+    tokenID
     creator
     id
     owner

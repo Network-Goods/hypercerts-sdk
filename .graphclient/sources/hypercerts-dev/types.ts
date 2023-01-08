@@ -96,6 +96,7 @@ export type Block_height = {
 
 export type Claim = {
   id: Scalars['String'];
+  tokenID: Scalars['BigInt'];
   contract: Scalars['String'];
   uri?: Maybe<Scalars['String']>;
   creator?: Maybe<Scalars['Bytes']>;
@@ -207,6 +208,14 @@ export type Claim_filter = {
   id_ends_with_nocase?: InputMaybe<Scalars['String']>;
   id_not_ends_with?: InputMaybe<Scalars['String']>;
   id_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  tokenID?: InputMaybe<Scalars['BigInt']>;
+  tokenID_not?: InputMaybe<Scalars['BigInt']>;
+  tokenID_gt?: InputMaybe<Scalars['BigInt']>;
+  tokenID_lt?: InputMaybe<Scalars['BigInt']>;
+  tokenID_gte?: InputMaybe<Scalars['BigInt']>;
+  tokenID_lte?: InputMaybe<Scalars['BigInt']>;
+  tokenID_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  tokenID_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
   contract?: InputMaybe<Scalars['String']>;
   contract_not?: InputMaybe<Scalars['String']>;
   contract_gt?: InputMaybe<Scalars['String']>;
@@ -273,6 +282,7 @@ export type Claim_filter = {
 
 export type Claim_orderBy =
   | 'id'
+  | 'tokenID'
   | 'contract'
   | 'uri'
   | 'creator'
