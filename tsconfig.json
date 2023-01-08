@@ -5,7 +5,6 @@
     "module": "ESNext",
     "moduleResolution": "NodeNext",
     "outDir": "./lib/",
-    "declarationDir": "./lib/types",
     "allowJs": true,
     "declaration": true,
     "declarationMap": true,
