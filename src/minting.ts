@@ -2,7 +2,7 @@ import { BigNumberish, ethers } from "ethers";
 import { provider } from "./utils/provider.js";
 import { HypercertMinter, HypercertMinterABI } from "@network-goods/hypercerts-protocol";
 import { validateMetaData } from "./validator/index.js";
-import { HypercertMetadata } from "../types/metadata.mjs";
+import { HypercertMetadata } from "../types/metadata.js";
 import { storeMetadata } from "./operator/index.js";
 
 // TODO dynamic addresses and provider

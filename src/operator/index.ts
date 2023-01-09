@@ -1,6 +1,6 @@
 // @ts-ignore
 import { NFTStorage, CIDString, Blob } from "nft.storage";
-import { HypercertMetadata } from "../../types/metadata.mjs";
+import { HypercertMetadata } from "../../types/metadata.js";
 import axios from "axios";
 
 // NFT.Storage

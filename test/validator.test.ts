@@ -1,7 +1,7 @@
 import { expect } from "chai";
 import { validateClaimData, validateMetaData } from "../src/validator/index.js";
-import { HypercertMetadata } from "../types/metadata.mjs";
-import { HypercertClaimdata } from "../types/claimdata.mjs";
+import { HypercertMetadata } from "../types/metadata.js";
+import { HypercertClaimdata } from "../types/claimdata.js";
 
 const exampleMetaData: HypercertMetadata = {
   name: "test",

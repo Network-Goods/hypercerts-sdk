@@ -2,7 +2,7 @@ import { expect, assert } from "chai";
 import { getMetadata, storeMetadata } from "../src/index.js";
 import mockData from "./mockData.json";
 
-import { HypercertMetadata } from "../types/metadata.mjs";
+import { HypercertMetadata } from "../types/metadata.js";
 
 const mockMetadata: HypercertMetadata = mockData;
 const mockMetadataCid = "bafkreigdm2flneb4khd7eixodagst5nrndptgezrjux7gohxcngjn67x6u";

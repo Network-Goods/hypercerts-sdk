@@ -17,7 +17,7 @@ import { HyperCertMinterFactory, HypercertMinterABI } from "@network-goods/hyper
 export { HyperCertMinterFactory, HypercertMinterABI };
 
 // Types
-import type { HypercertClaimdata } from "../types/claimdata.mjs";
-import type { HypercertMetadata } from "../types/metadata.mjs";
+import type { HypercertClaimdata } from "../types/claimdata.js";
+import type { HypercertMetadata } from "../types/metadata.js";
 
 export type { HypercertMetadata, HypercertClaimdata };
