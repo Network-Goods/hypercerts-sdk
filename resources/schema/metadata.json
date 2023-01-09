@@ -20,10 +20,19 @@
       "type": "string",
       "description": "Describes the asset to which this token represents"
     },
+    "allowList": {
+      "type": "string",
+      "description": "A CID pointer to the merke tree proof json on ipfs"
+    },
     "properties": {
       "$ref": "claimdata.json#"
     }
   },
   "additionalProperties": false,
-  "required": ["name", "description", "image", "properties"]
+  "required": [
+    "name",
+    "description",
+    "image",
+    "properties"
+  ]
 }

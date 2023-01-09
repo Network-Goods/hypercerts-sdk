@@ -5,8 +5,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-import { HypercertClaimdata } from "./claimdata";
-
 /**
  * Claim data for hypercert. ERC1155 Metadata compliant
  */
@@ -27,5 +25,9 @@ export interface HypercertMetadata {
    * Describes the asset to which this token represents
    */
   ref?: string;
+  /**
+   * A CID pointer to the merke tree proof json on ipfs
+   */
+  allowList?: string;
   properties: HypercertClaimdata;
 }
