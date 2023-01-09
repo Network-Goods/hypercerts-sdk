@@ -18,7 +18,7 @@ export const storeMetadata = async (data: HypercertMetadata, targetClient?: NFTS
 };
 
 //TODO handle returned errors from gateway
-export const getMetadata = async (cid: string) => {
+export const getMetadata = async (cid: string): Promise<HypercertMetadata | null> => {
   const nftStorageGatewayLink = NFT_STORAGE_IPFS_GATEWAY.replace("{cid}", cid);
   console.log(`Getting metadata ${cid} at ${nftStorageGatewayLink}`);
   return axios
