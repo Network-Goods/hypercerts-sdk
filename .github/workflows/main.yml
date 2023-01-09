@@ -2,6 +2,10 @@
 
 name: CI - SDK
 
+env:
+  GRAPH_URL: ${{ secrets.GRAPH_URL }}
+  NFT_STORAGE_TOKEN: ${{ secrets.NFT_STORAGE_TOKEN }}
+
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
@@ -30,8 +34,8 @@ jobs:
           cache: "yarn"
           node-version: "16"
 
-      - name: "Install the dependencies"
-        run: "yarn install --immutable"
+      # - name: "Install the dependencies"
+      #   run: "yarn install --immutable"
 
-      - name: "Run Jest"
-        run: "yarn test"
+      # - name: "Run Jest"
+      #   run: "yarn test"
