@@ -1,7 +1,7 @@
 import { expect } from "chai";
-import { validateClaimData, validateMetaData } from "../src/validator";
-import { HypercertMetadata } from "../types/metadata";
-import { HypercertClaimdata } from "../types/claimdata";
+import { validateClaimData, validateMetaData } from "../src/validator/index.js";
+import { HypercertMetadata } from "../types/metadata.mjs";
+import { HypercertClaimdata } from "../types/claimdata.mjs";
 
 const exampleMetaData: HypercertMetadata = {
   name: "test",
@@ -25,6 +25,7 @@ const exampleClaimData: HypercertClaimdata = {
 };
 
 describe("Validate claim test", () => {
+
   it("checking default metadata", () => {
     expect(validateMetaData(exampleMetaData)).to.be.true;
     expect(validateMetaData({} as HypercertMetadata)).to.be.false;

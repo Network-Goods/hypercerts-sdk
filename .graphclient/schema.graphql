@@ -94,6 +94,7 @@ scalar Bytes
 
 type Claim {
   id: String!
+  creation: BigInt!
   tokenID: BigInt!
   contract: String!
   uri: String
@@ -207,6 +208,14 @@ input Claim_filter {
   id_ends_with_nocase: String
   id_not_ends_with: String
   id_not_ends_with_nocase: String
+  creation: BigInt
+  creation_not: BigInt
+  creation_gt: BigInt
+  creation_lt: BigInt
+  creation_gte: BigInt
+  creation_lte: BigInt
+  creation_in: [BigInt!]
+  creation_not_in: [BigInt!]
   tokenID: BigInt
   tokenID_not: BigInt
   tokenID_gt: BigInt
@@ -281,6 +290,7 @@ input Claim_filter {
 
 enum Claim_orderBy {
   id
+  creation
   tokenID
   contract
   uri

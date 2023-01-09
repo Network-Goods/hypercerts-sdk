@@ -1,15 +1,13 @@
 {
   "compilerOptions": {
-    "lib": [
-      "ESNext",
-      "DOM"
-    ],
+    "lib": ["ESNext", "DOM"],
     "target": "ES6",
-    "module": "CommonJS",
+    "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "baseUrl": ".",
     "outDir": "./lib/",
     "allowJs": true,
+    "allowSyntheticDefaultImports": true,
     "declaration": true,
     "declarationMap": true,
     "emitDecoratorMetadata": true,
@@ -23,12 +21,6 @@
     "strict": true,
     "skipLibCheck": true
   },
-  "exclude": [
-    "node_modules"
-  ],
-  "include": [
-    "src/**/*",
-    ".graphclient/**/*",
-    "test/**/*.ts"
-  ]
+  "exclude": ["node_modules"],
+  "include": ["src/**/*", ".graphclient/**/*"]
 }

@@ -1,9 +1,9 @@
 import { BigNumberish, ethers } from "ethers";
-import { provider } from "./utils/provider";
+import { provider } from "./utils/provider.js";
 import { HypercertMinter, HypercertMinterABI } from "@network-goods/hypercerts-protocol";
-import { validateMetaData } from "./validator";
-import { HypercertMetadata } from "../types/metadata";
-import { storeMetadata } from "./operator";
+import { validateMetaData } from "./validator/index.js";
+import { HypercertMetadata } from "../types/metadata.mjs";
+import { storeMetadata } from "./operator/index.js";
 
 // TODO dynamic addresses and provider
 const hypercertMinter = <HypercertMinter>(
