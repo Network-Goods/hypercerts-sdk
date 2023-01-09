@@ -6,7 +6,8 @@
 * Added `getData` to retrieve those blobs
 * Refactored GraphQL queries to use graphclient generated SDK for better typings
 * Updated Graph client and types
-
+* Export ESM module only
+* Add allowList property to `HypercertMetaData`
 
 ## 0.0.4
 
