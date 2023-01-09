@@ -1,8 +1,11 @@
 {
   "compilerOptions": {
-    "lib": ["ESNext", "DOM"],
-    "target": "ES2022",
-    "module": "ESNext",
+    "lib": [
+      "ESNext",
+      "DOM"
+    ],
+    "target": "ES6",
+    "module": "CommonJS",
     "moduleResolution": "NodeNext",
     "baseUrl": ".",
     "outDir": "./lib/",
@@ -20,6 +23,12 @@
     "strict": true,
     "skipLibCheck": true
   },
-  "exclude": ["node_modules"],
-  "include": ["src/**/*", ".graphclient/**/*"]
+  "exclude": [
+    "node_modules"
+  ],
+  "include": [
+    "src/**/*",
+    ".graphclient/**/*",
+    "test/**/*.ts"
+  ]
 }
