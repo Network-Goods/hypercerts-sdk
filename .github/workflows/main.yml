@@ -19,6 +19,7 @@ on:
 jobs:
   # This workflow contains a single job called "build"
   build-and-test:
+    environment: test
     # The type of runner that the job will run on
     name: Build and test SDK
     runs-on: ubuntu-latest
@@ -34,8 +35,8 @@ jobs:
           cache: "yarn"
           node-version: "16"
 
-      # - name: "Install the dependencies"
-      #   run: "yarn install --immutable"
+      - name: "Install the dependencies"
+        run: "yarn install --immutable"
 
-      # - name: "Run Jest"
-      #   run: "yarn test"
+      - name: "Run Jest"
+        run: "yarn test"
