@@ -1,6 +1,6 @@
 {
   "name": "@network-goods/hypercerts-sdk",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "SDK for hypercerts protocol",
   "repository": "git@github.com:Network-Goods/hypercerts-sdk.git",
   "author": "Network Goods",
@@ -55,14 +55,5 @@
     "build": "npm run clean && npm run graph:build && npm run build:esm",
     "build:esm": "tsc && mv ./lib/src/index.js ./lib/src/index.mjs",
     "prepack": "npm run build",
-    "test": "ts-mocha -r dotenv/config test/*.ts"
-  },
-  "exports": {
-    ".": {
-      "import": {
-        "types": "./lib/types/src/index.d.ts",
-        "default": "./lib/src/index.mjs"
-      }
-    }
-  }
+    "test": "ts-mocha -r dotenv/config test/*.ts"  }
 }
