@@ -1,4 +1,4 @@
-import { getBuiltGraphSDK } from "../.graphclient/index.js";
+import { getBuiltGraphSDK} from "./.graphclient/index.js";
 
 const sdk = getBuiltGraphSDK();
 

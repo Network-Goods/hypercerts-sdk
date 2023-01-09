@@ -1,13 +1,13 @@
 import { BigNumberish, ethers } from "ethers";
 import { provider } from "./utils/provider.js";
-import { HypercertMinter, HypercertMinterABI } from "@network-goods/hypercerts-protocol";
+import * as protocol from "@network-goods/hypercerts-protocol";
 import { validateMetaData } from "./validator/index.js";
-import { HypercertMetadata } from "../types/metadata.js";
+import { HypercertMetadata } from "./types/metadata.js";
 import { storeMetadata } from "./operator/index.js";
 
 // TODO dynamic addresses and provider
-const hypercertMinter = <HypercertMinter>(
-  new ethers.Contract("0xcC08266250930E98256182734913Bf1B36102072", HypercertMinterABI, provider)
+const hypercertMinter = <protocol.HypercertMinter>(
+  new ethers.Contract("0xcC08266250930E98256182734913Bf1B36102072", protocol.HypercertMinterABI, provider)
 );
 
 // TODO error handling

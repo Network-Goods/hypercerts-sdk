@@ -1,5 +1,18 @@
 # Release notes
 
+## 0.0.12
+
+* JSON assertion
+
+## 0.0.11
+
+* Refactored to use ESM ("type": "module")
+* Refactered Mocha to Jest
+* Added basic assertions for the exported interface functions
+* Updated build scripts for stabler releasing
+* Enforce graphclient dependencies
+
+... [Numbers got lost in testing releasing]
 ## 0.0.6
 
 * Added graphql deps to solve publishing blocker
