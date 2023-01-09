@@ -1,5 +1,9 @@
 # Release notes
 
+## 0.0.6
+
+* Added graphql deps to solve publishing blocker
+
 ## 0.0.5
 
 * Added `storeData` to upload Blobs to IPFS for non-metadata data upload

@@ -4,6 +4,7 @@
     "target": "ES2022",
     "module": "ESNext",
     "moduleResolution": "NodeNext",
+    "baseUrl": ".",
     "outDir": "./lib/",
     "allowJs": true,
     "declaration": true,
