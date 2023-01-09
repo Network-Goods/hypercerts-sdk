@@ -6,7 +6,7 @@
   "author": "Network Goods",
   "license": "MIT",
   "typedocMain": "src/index.ts",
-  "main": "./lib/src/index.mjs",
+  "main": "./lib/src/index.js",
   "types": "./lib/src/index.d.ts",
   "files": [
     "lib/**/*"
@@ -74,7 +74,7 @@
     "graph:watch": "graphql-codegen -w",
     "clean": "rm -rf ./lib",
     "build": "npm run clean && npm run graph:build && npm run build:esm",
-    "build:esm": "tsc && mv ./lib/src/index.js ./lib/src/index.mjs",
+    "build:esm": "tsc",
     "prepack": "npm run build",
     "test": "ts-mocha -p tsconfig.json -r dotenv/config test/validator.test.ts",
     "types:json": "yarn run json2ts -i 'resources/schema/' -o 'types' --cwd 'resources/schema' --no-declareExternallyReferenced"
@@ -83,7 +83,7 @@
     ".": {
       "import": {
         "types": "./lib/src/index.d.ts",
-        "default": "./lib/src/index.mjs"
+        "default": "./lib/src/index.js"
       }
     }
   }
