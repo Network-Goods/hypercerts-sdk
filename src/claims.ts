@@ -1,13 +1,9 @@
-import { execute, ClaimsByOwnerDocument, RecentClaimsDocument, ClaimByIdDocument } from "../.graphclient";
+import { getBuiltGraphSDK} from "./.graphclient/index.js";
 
-export const claimsByOwner = async (owner: string) => {
-  return await execute(ClaimsByOwnerDocument, { owner });
-};
+const sdk = getBuiltGraphSDK();
 
-export const claimById = async (id: string) => {
-  return execute(ClaimByIdDocument, { id });
-};
+export const claimsByOwner = async (owner: string) => sdk.ClaimsByOwner({ owner });
 
-export const firstClaims = async (first: number) => {
-  return await execute(RecentClaimsDocument, { first });
-};
+export const claimById = async (id: string) => sdk.ClaimById({ id });
+
+export const firstClaims = async (first: number) => sdk.RecentClaims({ first });

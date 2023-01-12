@@ -1,11 +1,11 @@
 import Ajv from "ajv";
-import metaData from "../../resources/schema/metadata.json";
-import claimData from "../../resources/schema/claimdata.json";
+import metaData from "../resources/schema/metadata.json" assert { type: "json" };
+import claimData from "../resources/schema/claimdata.json" assert { type: "json" };
 
-import { HypercertMetadata } from "../../types/metadata";
-import { HypercertClaimdata } from "../../types/claimdata";
+import { HypercertMetadata } from "../types/metadata.js";
+import { HypercertClaimdata } from "../types/claimdata.js";
 
-const ajv = new Ajv(); // options can be passed, e.g. {allErrors: true}
+const ajv = new Ajv.default(); // options can be passed, e.g. {allErrors: true}
 ajv.addSchema(metaData, "metaData");
 ajv.addSchema(claimData, "claimData");
 

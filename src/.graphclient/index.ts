@@ -42,6 +42,69 @@ export type Scalars = {
   Bytes: any;
 };
 
+export type Allowlist = {
+  id: Scalars['String'];
+  root: Scalars['Bytes'];
+  claim: Claim;
+};
+
+export type Allowlist_filter = {
+  id?: InputMaybe<Scalars['String']>;
+  id_not?: InputMaybe<Scalars['String']>;
+  id_gt?: InputMaybe<Scalars['String']>;
+  id_lt?: InputMaybe<Scalars['String']>;
+  id_gte?: InputMaybe<Scalars['String']>;
+  id_lte?: InputMaybe<Scalars['String']>;
+  id_in?: InputMaybe<Array<Scalars['String']>>;
+  id_not_in?: InputMaybe<Array<Scalars['String']>>;
+  id_contains?: InputMaybe<Scalars['String']>;
+  id_contains_nocase?: InputMaybe<Scalars['String']>;
+  id_not_contains?: InputMaybe<Scalars['String']>;
+  id_not_contains_nocase?: InputMaybe<Scalars['String']>;
+  id_starts_with?: InputMaybe<Scalars['String']>;
+  id_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  id_not_starts_with?: InputMaybe<Scalars['String']>;
+  id_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  id_ends_with?: InputMaybe<Scalars['String']>;
+  id_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  id_not_ends_with?: InputMaybe<Scalars['String']>;
+  id_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  root?: InputMaybe<Scalars['Bytes']>;
+  root_not?: InputMaybe<Scalars['Bytes']>;
+  root_in?: InputMaybe<Array<Scalars['Bytes']>>;
+  root_not_in?: InputMaybe<Array<Scalars['Bytes']>>;
+  root_contains?: InputMaybe<Scalars['Bytes']>;
+  root_not_contains?: InputMaybe<Scalars['Bytes']>;
+  claim?: InputMaybe<Scalars['String']>;
+  claim_not?: InputMaybe<Scalars['String']>;
+  claim_gt?: InputMaybe<Scalars['String']>;
+  claim_lt?: InputMaybe<Scalars['String']>;
+  claim_gte?: InputMaybe<Scalars['String']>;
+  claim_lte?: InputMaybe<Scalars['String']>;
+  claim_in?: InputMaybe<Array<Scalars['String']>>;
+  claim_not_in?: InputMaybe<Array<Scalars['String']>>;
+  claim_contains?: InputMaybe<Scalars['String']>;
+  claim_contains_nocase?: InputMaybe<Scalars['String']>;
+  claim_not_contains?: InputMaybe<Scalars['String']>;
+  claim_not_contains_nocase?: InputMaybe<Scalars['String']>;
+  claim_starts_with?: InputMaybe<Scalars['String']>;
+  claim_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  claim_not_starts_with?: InputMaybe<Scalars['String']>;
+  claim_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  claim_ends_with?: InputMaybe<Scalars['String']>;
+  claim_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  claim_not_ends_with?: InputMaybe<Scalars['String']>;
+  claim_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  claim_?: InputMaybe<Claim_filter>;
+  /** Filter for the block changed event. */
+  _change_block?: InputMaybe<BlockChangedFilter>;
+};
+
+export type Allowlist_orderBy =
+  | 'id'
+  | 'root'
+  | 'claim';
+
 export type BlockChangedFilter = {
   number_gte: Scalars['Int'];
 };
@@ -54,6 +117,8 @@ export type Block_height = {
 
 export type Claim = {
   id: Scalars['String'];
+  creation: Scalars['BigInt'];
+  tokenID: Scalars['BigInt'];
   contract: Scalars['String'];
   uri?: Maybe<Scalars['String']>;
   creator?: Maybe<Scalars['Bytes']>;
@@ -165,6 +230,22 @@ export type Claim_filter = {
   id_ends_with_nocase?: InputMaybe<Scalars['String']>;
   id_not_ends_with?: InputMaybe<Scalars['String']>;
   id_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  creation?: InputMaybe<Scalars['BigInt']>;
+  creation_not?: InputMaybe<Scalars['BigInt']>;
+  creation_gt?: InputMaybe<Scalars['BigInt']>;
+  creation_lt?: InputMaybe<Scalars['BigInt']>;
+  creation_gte?: InputMaybe<Scalars['BigInt']>;
+  creation_lte?: InputMaybe<Scalars['BigInt']>;
+  creation_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  creation_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  tokenID?: InputMaybe<Scalars['BigInt']>;
+  tokenID_not?: InputMaybe<Scalars['BigInt']>;
+  tokenID_gt?: InputMaybe<Scalars['BigInt']>;
+  tokenID_lt?: InputMaybe<Scalars['BigInt']>;
+  tokenID_gte?: InputMaybe<Scalars['BigInt']>;
+  tokenID_lte?: InputMaybe<Scalars['BigInt']>;
+  tokenID_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  tokenID_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
   contract?: InputMaybe<Scalars['String']>;
   contract_not?: InputMaybe<Scalars['String']>;
   contract_gt?: InputMaybe<Scalars['String']>;
@@ -231,6 +312,8 @@ export type Claim_filter = {
 
 export type Claim_orderBy =
   | 'id'
+  | 'creation'
+  | 'tokenID'
   | 'contract'
   | 'uri'
   | 'creator'
@@ -243,12 +326,32 @@ export type OrderDirection =
   | 'desc';
 
 export type Query = {
+  allowlist?: Maybe<Allowlist>;
+  allowlists: Array<Allowlist>;
   claim?: Maybe<Claim>;
   claims: Array<Claim>;
   claimToken?: Maybe<ClaimToken>;
   claimTokens: Array<ClaimToken>;
   /** Access to subgraph metadata */
   _meta?: Maybe<_Meta_>;
+};
+
+
+export type QueryallowlistArgs = {
+  id: Scalars['ID'];
+  block?: InputMaybe<Block_height>;
+  subgraphError?: _SubgraphErrorPolicy_;
+};
+
+
+export type QueryallowlistsArgs = {
+  skip?: InputMaybe<Scalars['Int']>;
+  first?: InputMaybe<Scalars['Int']>;
+  orderBy?: InputMaybe<Allowlist_orderBy>;
+  orderDirection?: InputMaybe<OrderDirection>;
+  where?: InputMaybe<Allowlist_filter>;
+  block?: InputMaybe<Block_height>;
+  subgraphError?: _SubgraphErrorPolicy_;
 };
 
 
@@ -293,12 +396,32 @@ export type Query_metaArgs = {
 };
 
 export type Subscription = {
+  allowlist?: Maybe<Allowlist>;
+  allowlists: Array<Allowlist>;
   claim?: Maybe<Claim>;
   claims: Array<Claim>;
   claimToken?: Maybe<ClaimToken>;
   claimTokens: Array<ClaimToken>;
   /** Access to subgraph metadata */
   _meta?: Maybe<_Meta_>;
+};
+
+
+export type SubscriptionallowlistArgs = {
+  id: Scalars['ID'];
+  block?: InputMaybe<Block_height>;
+  subgraphError?: _SubgraphErrorPolicy_;
+};
+
+
+export type SubscriptionallowlistsArgs = {
+  skip?: InputMaybe<Scalars['Int']>;
+  first?: InputMaybe<Scalars['Int']>;
+  orderBy?: InputMaybe<Allowlist_orderBy>;
+  orderDirection?: InputMaybe<OrderDirection>;
+  where?: InputMaybe<Allowlist_filter>;
+  block?: InputMaybe<Block_height>;
+  subgraphError?: _SubgraphErrorPolicy_;
 };
 
 
@@ -457,6 +580,9 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = ResolversObject<{
+  Allowlist: ResolverTypeWrapper<Allowlist>;
+  Allowlist_filter: Allowlist_filter;
+  Allowlist_orderBy: Allowlist_orderBy;
   BigDecimal: ResolverTypeWrapper<Scalars['BigDecimal']>;
   BigInt: ResolverTypeWrapper<Scalars['BigInt']>;
   BlockChangedFilter: BlockChangedFilter;
@@ -483,6 +609,8 @@ export type ResolversTypes = ResolversObject<{
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = ResolversObject<{
+  Allowlist: Allowlist;
+  Allowlist_filter: Allowlist_filter;
   BigDecimal: Scalars['BigDecimal'];
   BigInt: Scalars['BigInt'];
   BlockChangedFilter: BlockChangedFilter;
@@ -519,6 +647,13 @@ export type derivedFromDirectiveArgs = {
 
 export type derivedFromDirectiveResolver<Result, Parent, ContextType = MeshContext, Args = derivedFromDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
 
+export type AllowlistResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['Allowlist'] = ResolversParentTypes['Allowlist']> = ResolversObject<{
+  id?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  root?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
+  claim?: Resolver<ResolversTypes['Claim'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+}>;
+
 export interface BigDecimalScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['BigDecimal'], any> {
   name: 'BigDecimal';
 }
@@ -533,6 +668,8 @@ export interface BytesScalarConfig extends GraphQLScalarTypeConfig<ResolversType
 
 export type ClaimResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['Claim'] = ResolversParentTypes['Claim']> = ResolversObject<{
   id?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  creation?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
+  tokenID?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
   contract?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   uri?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   creator?: Resolver<Maybe<ResolversTypes['Bytes']>, ParentType, ContextType>;
@@ -551,6 +688,8 @@ export type ClaimTokenResolvers<ContextType = MeshContext, ParentType extends Re
 }>;
 
 export type QueryResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = ResolversObject<{
+  allowlist?: Resolver<Maybe<ResolversTypes['Allowlist']>, ParentType, ContextType, RequireFields<QueryallowlistArgs, 'id' | 'subgraphError'>>;
+  allowlists?: Resolver<Array<ResolversTypes['Allowlist']>, ParentType, ContextType, RequireFields<QueryallowlistsArgs, 'skip' | 'first' | 'subgraphError'>>;
   claim?: Resolver<Maybe<ResolversTypes['Claim']>, ParentType, ContextType, RequireFields<QueryclaimArgs, 'id' | 'subgraphError'>>;
   claims?: Resolver<Array<ResolversTypes['Claim']>, ParentType, ContextType, RequireFields<QueryclaimsArgs, 'skip' | 'first' | 'subgraphError'>>;
   claimToken?: Resolver<Maybe<ResolversTypes['ClaimToken']>, ParentType, ContextType, RequireFields<QueryclaimTokenArgs, 'id' | 'subgraphError'>>;
@@ -559,6 +698,8 @@ export type QueryResolvers<ContextType = MeshContext, ParentType extends Resolve
 }>;
 
 export type SubscriptionResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['Subscription'] = ResolversParentTypes['Subscription']> = ResolversObject<{
+  allowlist?: SubscriptionResolver<Maybe<ResolversTypes['Allowlist']>, "allowlist", ParentType, ContextType, RequireFields<SubscriptionallowlistArgs, 'id' | 'subgraphError'>>;
+  allowlists?: SubscriptionResolver<Array<ResolversTypes['Allowlist']>, "allowlists", ParentType, ContextType, RequireFields<SubscriptionallowlistsArgs, 'skip' | 'first' | 'subgraphError'>>;
   claim?: SubscriptionResolver<Maybe<ResolversTypes['Claim']>, "claim", ParentType, ContextType, RequireFields<SubscriptionclaimArgs, 'id' | 'subgraphError'>>;
   claims?: SubscriptionResolver<Array<ResolversTypes['Claim']>, "claims", ParentType, ContextType, RequireFields<SubscriptionclaimsArgs, 'skip' | 'first' | 'subgraphError'>>;
   claimToken?: SubscriptionResolver<Maybe<ResolversTypes['ClaimToken']>, "claimToken", ParentType, ContextType, RequireFields<SubscriptionclaimTokenArgs, 'id' | 'subgraphError'>>;
@@ -581,6 +722,7 @@ export type _Meta_Resolvers<ContextType = MeshContext, ParentType extends Resolv
 }>;
 
 export type Resolvers<ContextType = MeshContext> = ResolversObject<{
+  Allowlist?: AllowlistResolvers<ContextType>;
   BigDecimal?: GraphQLScalarType;
   BigInt?: GraphQLScalarType;
   Bytes?: GraphQLScalarType;
@@ -749,21 +891,21 @@ export type ClaimsByOwnerQueryVariables = Exact<{
 }>;
 
 
-export type ClaimsByOwnerQuery = { claims: Array<Pick<Claim, 'contract' | 'creator' | 'id' | 'owner' | 'totalUnits' | 'uri'>> };
+export type ClaimsByOwnerQuery = { claims: Array<Pick<Claim, 'contract' | 'tokenID' | 'creator' | 'id' | 'owner' | 'totalUnits' | 'uri'>> };
 
 export type RecentClaimsQueryVariables = Exact<{
   first?: InputMaybe<Scalars['Int']>;
 }>;
 
 
-export type RecentClaimsQuery = { claims: Array<Pick<Claim, 'contract' | 'creator' | 'id' | 'owner' | 'totalUnits' | 'uri'>> };
+export type RecentClaimsQuery = { claims: Array<Pick<Claim, 'contract' | 'tokenID' | 'creator' | 'id' | 'owner' | 'totalUnits' | 'uri'>> };
 
 export type ClaimByIdQueryVariables = Exact<{
   id: Scalars['ID'];
 }>;
 
 
-export type ClaimByIdQuery = { claim?: Maybe<Pick<Claim, 'contract' | 'creator' | 'id' | 'owner' | 'totalUnits' | 'uri'>> };
+export type ClaimByIdQuery = { claim?: Maybe<Pick<Claim, 'contract' | 'tokenID' | 'creator' | 'id' | 'owner' | 'totalUnits' | 'uri'>> };
 
 export type ClaimTokensByOwnerQueryVariables = Exact<{
   owner?: InputMaybe<Scalars['Bytes']>;
@@ -784,6 +926,7 @@ export const ClaimsByOwnerDocument = gql`
     query ClaimsByOwner($owner: Bytes = "") {
   claims(where: {owner: $owner}) {
     contract
+    tokenID
     creator
     id
     owner
@@ -796,6 +939,7 @@ export const RecentClaimsDocument = gql`
     query RecentClaims($first: Int = 10) {
   claims(orderDirection: desc, orderBy: id, first: $first) {
     contract
+    tokenID
     creator
     id
     owner
@@ -808,6 +952,7 @@ export const ClaimByIdDocument = gql`
     query ClaimById($id: ID!) {
   claim(id: $id) {
     contract
+    tokenID
     creator
     id
     owner

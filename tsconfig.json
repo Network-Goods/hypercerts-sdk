@@ -1,6 +1,13 @@
 {
   "compilerOptions": {
+    "lib": ["ES6", "DOM"],
+    "target": "ES6",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "baseUrl": ".",
+    "outDir": "./lib",
     "allowJs": true,
+    "allowSyntheticDefaultImports": true,
     "declaration": true,
     "declarationMap": true,
     "emitDecoratorMetadata": true,
@@ -12,9 +19,8 @@
     "resolveJsonModule": true,
     "sourceMap": true,
     "strict": true,
-    "skipLibCheck": true,
-    "outDir": "lib/",
+    "skipLibCheck": true
   },
   "exclude": ["node_modules"],
-  "include": ["src/**/*", ".graphclient/**/*"],
+  "include": ["src/**/*", ".graphclient/**/*", "src/.graphclient/sources/**/*"]
 }

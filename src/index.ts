@@ -1,23 +1,25 @@
 // Validation
-import { validateMetaData, validateClaimData } from "./validator";
-import { storeMetadata, getMetadata } from "./operator";
+import { validateMetaData, validateClaimData } from "./validator/index.js";
+import { storeMetadata, storeData, getMetadata, getData, deleteMetadata } from "./operator/index.js";
 
-export { validateMetaData, validateClaimData, storeMetadata, getMetadata };
+export { validateMetaData, validateClaimData, storeMetadata, storeData, getMetadata, getData, deleteMetadata };
 
 // Graph
-import { execute } from "../.graphclient";
-import { claimsByOwner, claimById, firstClaims } from "./claims";
-import { fractionsByOwner, fractionsByClaim } from "./fractions";
+import { execute } from "./.graphclient/index.js";
+import { claimsByOwner, claimById, firstClaims } from "./claims.js";
+import { fractionsByOwner, fractionsByClaim } from "./fractions.js";
 
 export { execute, claimsByOwner, claimById, firstClaims, fractionsByOwner, fractionsByClaim };
 
 // Protocol
-import { HyperCertMinterFactory, HypercertMinterABI } from "@network-goods/hypercerts-protocol";
+import * as protocol from "@network-goods/hypercerts-protocol";
+
+const { HyperCertMinterFactory, HypercertMinterABI } = protocol;
 
 export { HyperCertMinterFactory, HypercertMinterABI };
 
 // Types
-import type { HypercertClaimdata } from "../types/claimdata";
-import type { HypercertMetadata } from "../types/metadata";
+import type { HypercertClaimdata } from "./types/claimdata.js";
+import type { HypercertMetadata } from "./types/metadata.js";
 
 export type { HypercertMetadata, HypercertClaimdata };
