@@ -7,9 +7,9 @@ export { validateMetaData, validateClaimData, storeMetadata, storeData, getMetad
 // Graph
 import { execute } from "./.graphclient/index.js";
 import { claimsByOwner, claimById, firstClaims } from "./claims.js";
-import { fractionsByOwner, fractionsByClaim } from "./fractions.js";
+import { fractionsByOwner, fractionsByClaim, fractionById } from "./fractions.js";
 
-export { execute, claimsByOwner, claimById, firstClaims, fractionsByOwner, fractionsByClaim };
+export { execute, claimsByOwner, claimById, firstClaims, fractionsByOwner, fractionsByClaim, fractionById };
 
 // Protocol
 import * as protocol from "@network-goods/hypercerts-protocol";

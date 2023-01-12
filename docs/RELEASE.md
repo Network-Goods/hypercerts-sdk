@@ -1,5 +1,10 @@
 # Release notes
 
+## 0.0.13
+
+* Add claimtoken queries
+* Sort queries claim by creation timestamp instead of id
+
 ## 0.0.12
 
 * JSON assertion
@@ -13,6 +18,7 @@
 * Enforce graphclient dependencies
 
 ... [Numbers got lost in testing releasing]
+
 ## 0.0.6
 
 * Added graphql deps to solve publishing blocker
