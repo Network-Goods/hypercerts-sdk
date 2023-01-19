@@ -1,5 +1,9 @@
 # Release notes
 
+## 0.0.14
+
+* Update to hypercerts-sdk 0.0.7
+
 ## 0.0.13
 
 * Add claimtoken queries

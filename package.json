@@ -1,6 +1,6 @@
 {
   "name": "@network-goods/hypercerts-sdk",
-  "version": "0.0.12",
+  "version": "0.0.14",
   "description": "SDK for hypercerts protocol",
   "repository": "git@github.com:Network-Goods/hypercerts-sdk.git",
   "author": "Network Goods",
@@ -35,7 +35,7 @@
     "@graphql-mesh/transform-type-merging": "latest",
     "@graphql-mesh/utils": "latest",
     "@graphql-tools/merge": "latest",
-    "@network-goods/hypercerts-protocol": "0.0.6",
+    "@network-goods/hypercerts-protocol": "0.0.7",
     "@types/jest": "^29.2.5",
     "ajv": "^8.11.2",
     "axios": "^1.2.2",
