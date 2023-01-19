@@ -23,3 +23,8 @@ import type { HypercertClaimdata } from "./types/claimdata.js";
 import type { HypercertMetadata } from "./types/metadata.js";
 
 export type { HypercertMetadata, HypercertClaimdata };
+
+// Components
+import { Button } from "./components/Button.js";
+
+export { Button };

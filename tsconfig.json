@@ -19,7 +19,8 @@
     "resolveJsonModule": true,
     "sourceMap": true,
     "strict": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "jsx": "react"
   },
   "exclude": ["node_modules"],
   "include": ["src/**/*", ".graphclient/**/*", "src/.graphclient/sources/**/*"]
