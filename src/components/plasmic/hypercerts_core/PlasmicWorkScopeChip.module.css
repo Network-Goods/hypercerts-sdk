@@ -1,0 +1,31 @@
+.root {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  background: var(--token-iycsPjQvq);
+  position: relative;
+  border-radius: 10px;
+  padding: 5px 25px;
+}
+.freeBox {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 800px;
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  min-width: 0;
+}
+.slotTargetChildren {
+  font-family: "Ubuntu Mono";
+  font-size: 18px;
+  color: var(--token-PRgx9PicR);
+  text-align: center;
+  line-height: 1;
+  letter-spacing: -0.1em;
+}

@@ -1,0 +1,110 @@
+{
+  "platform": "react",
+  "code": {
+    "lang": "ts",
+    "scheme": "blackbox",
+    "reactRuntime": "classic"
+  },
+  "style": {
+    "scheme": "css-modules",
+    "defaultStyleCssFilePath": "plasmic/plasmic__default_style.module.css"
+  },
+  "images": {
+    "scheme": "inlined",
+    "publicDir": "../public",
+    "publicUrlPrefix": "/static/"
+  },
+  "tokens": {
+    "scheme": "theo",
+    "tokensFilePath": "plasmic-tokens.theo.json"
+  },
+  "srcDir": "src/components",
+  "defaultPlasmicDir": "./plasmic",
+  "projects": [
+    {
+      "projectId": "tKtnZiEMup1PmF99tS3Jhx",
+      "projectApiToken": "AsobqMlbpUFpzh4uM8U3j9T66AY1nPrX6jtk0JNeiVriaf0X50gR1cwuY8b1y1JLUSBF74oHrmo2KRMA07w",
+      "projectName": "Hypercerts Core",
+      "version": "latest",
+      "cssFilePath": "plasmic/hypercerts_core/plasmic_hypercerts_core.module.css",
+      "components": [
+        {
+          "id": "nRgxc3-mhP",
+          "name": "HypercertImage",
+          "type": "managed",
+          "projectId": "tKtnZiEMup1PmF99tS3Jhx",
+          "renderModuleFilePath": "plasmic/hypercerts_core/PlasmicHypercertImage.tsx",
+          "importSpec": {
+            "modulePath": "HypercertImage.tsx"
+          },
+          "cssFilePath": "plasmic/hypercerts_core/PlasmicHypercertImage.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "Nv7cSj-s9F",
+          "name": "WorkScopeChip",
+          "type": "managed",
+          "projectId": "tKtnZiEMup1PmF99tS3Jhx",
+          "renderModuleFilePath": "plasmic/hypercerts_core/PlasmicWorkScopeChip.tsx",
+          "importSpec": {
+            "modulePath": "WorkScopeChip.tsx"
+          },
+          "cssFilePath": "plasmic/hypercerts_core/PlasmicWorkScopeChip.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        }
+      ],
+      "icons": [],
+      "images": [
+        {
+          "id": "vr4pSW2pH",
+          "name": "orb",
+          "filePath": "plasmic/hypercerts_core/images/orb.png"
+        },
+        {
+          "id": "bQIat_8lS",
+          "name": "collection-logo",
+          "filePath": "plasmic/hypercerts_core/images/collectionLogo.png"
+        },
+        {
+          "id": "2etckvHUL",
+          "name": "squiggly",
+          "filePath": "plasmic/hypercerts_core/images/squiggly.png"
+        },
+        {
+          "id": "_TBH9MuFK",
+          "name": "tile-background",
+          "filePath": "plasmic/hypercerts_core/images/tileBackground.png"
+        }
+      ],
+      "indirect": false,
+      "globalContextsFilePath": "",
+      "codeComponents": [
+        {
+          "id": "2LeErUoxBv",
+          "name": "PlasmicHead",
+          "componentImportPath": "@plasmicapp/react-web"
+        },
+        {
+          "id": "XPYFyglhLZ",
+          "name": "Fetcher",
+          "componentImportPath": "@plasmicapp/react-web/lib/data-sources"
+        }
+      ]
+    }
+  ],
+  "globalVariants": {
+    "variantGroups": [
+      {
+        "id": "OGoErvQynxLNx",
+        "name": "Screen",
+        "projectId": "tKtnZiEMup1PmF99tS3Jhx",
+        "contextFilePath": "plasmic/hypercerts_core/PlasmicGlobalVariant__Screen.tsx"
+      }
+    ]
+  },
+  "wrapPagesWithGlobalContexts": true,
+  "cliVersion": "0.1.196",
+  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.196/dist/plasmic.schema.json"
+}
