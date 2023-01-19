@@ -35,7 +35,7 @@
     "@graphql-mesh/transform-type-merging": "latest",
     "@graphql-mesh/utils": "latest",
     "@graphql-tools/merge": "latest",
-    "@network-goods/hypercerts-protocol": "0.0.7",
+    "@network-goods/hypercerts-protocol": "0.0.8",
     "@types/jest": "^29.2.5",
     "ajv": "^8.11.2",
     "axios": "^1.2.2",

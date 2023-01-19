@@ -1,5 +1,5 @@
 // Validation
-import { validateMetaData, validateClaimData } from "./validator/index.js";
+import { validateMetaData, validateClaimData } from "./validator";
 import { storeMetadata, storeData, getMetadata, getData, deleteMetadata } from "./operator/index.js";
 
 export { validateMetaData, validateClaimData, storeMetadata, storeData, getMetadata, getData, deleteMetadata };

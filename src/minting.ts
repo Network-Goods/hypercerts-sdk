@@ -11,13 +11,18 @@ const hypercertMinter = <protocol.HypercertMinter>(
 );
 
 // TODO error handling
-export const mintHypercertToken = async (claimData: HypercertMetadata, totalUnits: BigNumberish) => {
+// TODO Automagic checking on mapping transferRestrictions -> value and effect
+export const mintHypercertToken = async (
+  claimData: HypercertMetadata,
+  totalUnits: BigNumberish,
+  transferRestriction: BigNumberish,
+) => {
   if (validateMetaData(claimData)) {
     // store metadata on IPFS
     const cid = await storeMetadata(claimData);
 
     // mint hypercert token
-    return hypercertMinter.mintClaim(totalUnits, cid);
+    return hypercertMinter.mintClaim(totalUnits, cid, transferRestriction);
   } else {
     console.log("Incorrect metadata");
   }

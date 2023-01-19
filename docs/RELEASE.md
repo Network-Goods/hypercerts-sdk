@@ -2,7 +2,7 @@
 
 ## 0.0.14
 
-* Update to hypercerts-sdk 0.0.7
+* Update to hypercerts-sdk 0.0.8
 
 ## 0.0.13
 

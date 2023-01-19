@@ -3312,10 +3312,10 @@
     multiformats "^10.0.2"
     murmurhash3js-revisited "^3.0.0"
 
-"@network-goods/hypercerts-protocol@0.0.7":
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/@network-goods/hypercerts-protocol/-/hypercerts-protocol-0.0.7.tgz#76a4aed9d720f0f22bc3ff5abb8c5a8659799d46"
-  integrity sha512-PI1IsyqylMRa7jlNO7JMT17Ff+9YBJvoOOJsuDBoV3wgkw0MESbRfpPDO2LIc15QzQXckI/zovp8fJz4RgMgtA==
+"@network-goods/hypercerts-protocol@0.0.8":
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/@network-goods/hypercerts-protocol/-/hypercerts-protocol-0.0.8.tgz#2de0a98d8b5558963ef1c1990fead88ee91dbcfa"
+  integrity sha512-nhKpEaDI7YUYjPQ0KBIyZDZtm5DJ6BE/DW6B72xja9SeHQojWLOoQWBLUCZX9SAoCSf2i/txn0O2YkIX2zrpFw==
 
 "@noble/ed25519@^1.6.0":
   version "1.7.1"
