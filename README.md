@@ -29,6 +29,25 @@ yarn build
 [API documentation](/docs/API.md)
 [Graph playground](https://thegraph.com/hosted-service/subgraph/bitbeckers/hypercerts-dev)
 
+## Updating Plasmic designs
+
+The visual designs are edited in [Plasmic](https://plasmic.app?ref=ryscheng). You can sign up for an account [here](https://plasmic.app?ref=ryscheng).
+
+These are then manually synced into React components. You can find a list of all Plasmic-generated React components in `plasmic.json`.
+
+To update the design:
+
+1. Navigate to the [Plasmic project](https://studio.plasmic.app/projects/tKtnZiEMup1PmF99tS3Jhx/). Make sure you have edit permissions.
+
+2. Sync the designs into the repository via `yarn plasmic:sync`.
+
+3. If you are updating the design-code API, make sure to edit the respective wrapper file in `./src/components` (e.g. `HypercertImage.tsx`).
+
+For docs on how to use Plasmic, see the [docs](https://docs.plasmic.app/learn/plasmic-studio-guide/).
+Note: this is a different usage pattern than what we do in Next.js codebases.
+https://github.com/vercel/next.js/issues/19936
+
+
 ## Packages
 
 ### Contracts

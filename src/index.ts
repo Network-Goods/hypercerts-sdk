@@ -23,3 +23,7 @@ import type { HypercertClaimdata } from "./types/claimdata.js";
 import type { HypercertMetadata } from "./types/metadata.js";
 
 export type { HypercertMetadata, HypercertClaimdata };
+
+// React widgets
+import { HypercertImage } from "./components/HypercertImage.js";
+export { HypercertImage }
