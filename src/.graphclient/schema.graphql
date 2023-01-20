@@ -41,6 +41,10 @@ input Allowlist_filter {
   id_not_ends_with_nocase: String
   root: Bytes
   root_not: Bytes
+  root_gt: Bytes
+  root_lt: Bytes
+  root_gte: Bytes
+  root_lte: Bytes
   root_in: [Bytes!]
   root_not_in: [Bytes!]
   root_contains: Bytes
@@ -163,6 +167,10 @@ input ClaimToken_filter {
   claim_: Claim_filter
   owner: Bytes
   owner_not: Bytes
+  owner_gt: Bytes
+  owner_lt: Bytes
+  owner_gte: Bytes
+  owner_lte: Bytes
   owner_in: [Bytes!]
   owner_not_in: [Bytes!]
   owner_contains: Bytes
@@ -266,12 +274,20 @@ input Claim_filter {
   uri_not_ends_with_nocase: String
   creator: Bytes
   creator_not: Bytes
+  creator_gt: Bytes
+  creator_lt: Bytes
+  creator_gte: Bytes
+  creator_lte: Bytes
   creator_in: [Bytes!]
   creator_not_in: [Bytes!]
   creator_contains: Bytes
   creator_not_contains: Bytes
   owner: Bytes
   owner_not: Bytes
+  owner_gt: Bytes
+  owner_lt: Bytes
+  owner_gte: Bytes
+  owner_lte: Bytes
   owner_in: [Bytes!]
   owner_not_in: [Bytes!]
   owner_contains: Bytes
