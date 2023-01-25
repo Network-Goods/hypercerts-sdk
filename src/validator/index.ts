@@ -19,8 +19,8 @@ const validateMetaData = (data: HypercertMetadata) => {
   if (validate(data)) {
     return true;
   } else {
-    for (const error in validate.errors) {
-      console.log("Error while validation meta data: ", error);
+    for (const error of validate.errors || []) {
+      console.log("Error while validation meta data: ", error.message);
     }
     return false;
   }
@@ -35,9 +35,8 @@ const validateClaimData = (data: HypercertClaimdata) => {
   if (validate(data)) {
     return true;
   } else {
-    console.log(validate.errors);
-    for (const error in validate.errors) {
-      console.log("Error while validating claim data: ", error);
+    for (const error of validate.errors || []) {
+      console.log("Error while validating claim data: ", error.message);
     }
     return false;
   }
