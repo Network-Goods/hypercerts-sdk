@@ -7,10 +7,10 @@ import { HypercertClaimdata } from "../types/claimdata.js";
 
 type Result = {
   valid: boolean;
-  errors: string[];
+  errors: Record<string, string>;
 };
 
-const ajv = new Ajv.default(); // options can be passed, e.g. {allErrors: true}
+const ajv = new Ajv.default({ allErrors: true }); // options can be passed, e.g. {allErrors: true}
 ajv.addSchema(metaData, "metaData");
 ajv.addSchema(claimData, "claimData");
 
@@ -18,15 +18,22 @@ ajv.addSchema(claimData, "claimData");
 const validateMetaData = (data: HypercertMetadata): Result => {
   let validate = ajv.getSchema<HypercertMetadata>("metaData");
   if (!validate) {
-    return { valid: false, errors: [] };
+    return { valid: false, errors: {} };
   }
 
   if (validate(data)) {
-    return { valid: true, errors: [] };
+    return { valid: true, errors: {} };
   } else {
+    const errors: Record<string, string> = {};
+    for (const e of validate.errors || []) {
+      const key = e.params.missingProperty || "other";
+      if (key && e.message) {
+        errors[key] = e.message;
+      }
+    }
     return {
       valid: false,
-      errors: (validate.errors || []).filter((e) => e.message !== undefined).map((e) => e.message as string),
+      errors,
     };
   }
 };
@@ -34,15 +41,22 @@ const validateMetaData = (data: HypercertMetadata): Result => {
 const validateClaimData = (data: HypercertClaimdata): Result => {
   let validate = ajv.getSchema<HypercertClaimdata>("claimData");
   if (!validate) {
-    return { valid: false, errors: [] };
+    return { valid: false, errors: {} };
   }
 
   if (validate(data)) {
-    return { valid: true, errors: [] };
+    return { valid: true, errors: {} };
   } else {
+    const errors: Record<string, string> = {};
+    for (const e of validate.errors || []) {
+      const key = e.params.missingProperty || "other";
+      if (key && e.message) {
+        errors[key] = e.message;
+      }
+    }
     return {
       valid: false,
-      errors: (validate.errors || []).filter((e) => e.message !== undefined).map((e) => e.message as string),
+      errors,
     };
   }
 };
