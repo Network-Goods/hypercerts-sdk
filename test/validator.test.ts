@@ -27,11 +27,15 @@ const exampleClaimData: HypercertClaimdata = {
 describe("Validate claim test", () => {
   it("checking default metadata", () => {
     expect(validateMetaData(exampleMetaData).valid).to.be.true;
+    expect(validateMetaData(exampleMetaData).errors.length).to.eq(0);
     expect(validateMetaData({} as HypercertMetadata).valid).to.be.false;
+    expect(validateMetaData({} as HypercertMetadata).errors.length).to.gt(0);
   });
 
   it("checking default claimdata", () => {
     expect(validateClaimData(exampleClaimData).valid).to.be.true;
+    expect(validateClaimData(exampleClaimData).errors.length).to.eq(0);
     expect(validateClaimData({} as HypercertClaimdata).valid).to.be.false;
+    expect(validateClaimData({} as HypercertClaimdata).errors.length).to.gt(0);
   });
 });

@@ -7,7 +7,7 @@ import { HypercertClaimdata } from "../types/claimdata.js";
 
 type Result = {
   valid: boolean;
-  errors?: string[];
+  errors: string[];
 };
 
 const ajv = new Ajv.default(); // options can be passed, e.g. {allErrors: true}
@@ -18,15 +18,15 @@ ajv.addSchema(claimData, "claimData");
 const validateMetaData = (data: HypercertMetadata): Result => {
   let validate = ajv.getSchema<HypercertMetadata>("metaData");
   if (!validate) {
-    return { valid: false };
+    return { valid: false, errors: [] };
   }
 
   if (validate(data)) {
-    return { valid: true };
+    return { valid: true, errors: [] };
   } else {
     return {
       valid: false,
-      errors: validate.errors?.filter((e) => e.message !== undefined).map((e) => e.message as string),
+      errors: (validate.errors || []).filter((e) => e.message !== undefined).map((e) => e.message as string),
     };
   }
 };
@@ -34,15 +34,15 @@ const validateMetaData = (data: HypercertMetadata): Result => {
 const validateClaimData = (data: HypercertClaimdata): Result => {
   let validate = ajv.getSchema<HypercertClaimdata>("claimData");
   if (!validate) {
-    return { valid: false };
+    return { valid: false, errors: [] };
   }
 
   if (validate(data)) {
-    return { valid: true };
+    return { valid: true, errors: [] };
   } else {
     return {
       valid: false,
-      errors: validate.errors?.filter((e) => e.message !== undefined).map((e) => e.message as string),
+      errors: (validate.errors || []).filter((e) => e.message !== undefined).map((e) => e.message as string),
     };
   }
 };
