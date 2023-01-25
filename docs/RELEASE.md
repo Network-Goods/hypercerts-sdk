@@ -1,5 +1,9 @@
 # Release notes
 
+## 0.0.16
+
+* Return errors with property keys
+
 ## 0.0.15
 
 * Include error messages in returned value from schema validation
