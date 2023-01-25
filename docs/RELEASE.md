@@ -1,5 +1,9 @@
 # Release notes
 
+## 0.0.15
+
+* Include error messages in returned value from schema validation
+
 ## 0.0.14
 
 * Update to hypercerts-sdk 0.0.8
