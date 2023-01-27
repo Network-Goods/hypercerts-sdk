@@ -1,6 +1,6 @@
 {
   "name": "@network-goods/hypercerts-sdk",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "description": "SDK for hypercerts protocol",
   "repository": "git@github.com:Network-Goods/hypercerts-sdk.git",
   "author": "Network Goods",
@@ -15,27 +15,8 @@
     "package.json"
   ],
   "dependencies": {
-    "@graphprotocol/client-add-source-name": "latest",
-    "@graphprotocol/client-auto-pagination": "latest",
-    "@graphprotocol/client-auto-type-merging": "latest",
-    "@graphql-mesh/cache-localforage": "latest",
-    "@graphql-mesh/cross-helpers": "latest",
-    "@graphql-mesh/graphql": "latest",
-    "@graphql-mesh/http": "latest",
-    "@graphql-mesh/json-schema": "latest",
-    "@graphql-mesh/merger-bare": "latest",
-    "@graphql-mesh/merger-stitching": "latest",
-    "@graphql-mesh/plugin-mock": "latest",
-    "@graphql-mesh/runtime": "latest",
-    "@graphql-mesh/store": "latest",
-    "@graphql-mesh/transform-filter-schema": "latest",
-    "@graphql-mesh/transform-prefix": "latest",
-    "@graphql-mesh/transform-prune": "latest",
-    "@graphql-mesh/transform-rename": "latest",
-    "@graphql-mesh/transform-type-merging": "latest",
-    "@graphql-mesh/utils": "latest",
-    "@graphql-tools/merge": "latest",
-    "@network-goods/hypercerts-protocol": "0.0.8",
+    "@graphprotocol/client-cli": "^2.2.15",
+    "@network-goods/hypercerts-protocol": "0.0.9",
     "@types/jest": "^29.2.5",
     "ajv": "^8.11.2",
     "axios": "^1.2.2",
@@ -50,7 +31,6 @@
     "ts-mocha": "^10.0.0"
   },
   "devDependencies": {
-    "@graphprotocol/client-cli": "^2.2.15",
     "@types/chai": "^4.3.4",
     "@types/node": "^18.11.17",
     "chai": "^4.3.7",
@@ -78,7 +58,7 @@
     "build:esm": "tsc",
     "prebuild": "yarn clean",
     "prepack": "yarn build",
-    "test": "NODE_OPTIONS=\"--experimental-vm-modules\" jest",
+    "test": "NODE_OPTIONS=\"--no-warnings --experimental-vm-modules\" jest",
     "types:json": "yarn run json2ts -i './src/resources/schema/' -o 'src/types' --cwd './src/resources/schema' --no-declareExternallyReferenced"
   },
   "type": "module"

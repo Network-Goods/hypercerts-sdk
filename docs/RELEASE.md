@@ -1,5 +1,10 @@
 # Release notes
 
+## 0.0.17
+
+* Update contracts
+* Cleaned up package.json
+
 ## 0.0.16
 
 * Return errors with property keys
