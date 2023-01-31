@@ -4,6 +4,11 @@
 
 * Remove ipfs:// prefix when generating gateway uri and a URI is passed, instead of a cid
 
+## 0.0.17
+
+* Update contracts
+* Cleaned up package.json
+
 ## 0.0.16
 
 * Return errors with property keys
