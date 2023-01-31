@@ -6,7 +6,12 @@ import axios from "axios";
 // NFT.Storage
 const NFT_STORAGE_TOKEN = process.env.NFT_STORAGE_TOKEN ?? "MISSING_TOKEN";
 
-const NFT_STORAGE_IPFS_GATEWAY = "https://nftstorage.link/ipfs/{cid}";
+const getIpfsGatewayUri = (cidOrIpfsUri: string) => {
+  const NFT_STORAGE_IPFS_GATEWAY = "https://nftstorage.link/ipfs/{cid}";
+  const cid = cidOrIpfsUri.startsWith("ipfs://") ? cidOrIpfsUri.replace("ipfs://", "") : cidOrIpfsUri;
+  return NFT_STORAGE_IPFS_GATEWAY.replace("{cid}", cid);
+};
+
 const defaultNftStorageClient = new NFTStorage({ token: NFT_STORAGE_TOKEN });
 
 export const storeMetadata = async (data: HypercertMetadata, targetClient?: NFTStorage): Promise<CIDString> => {
@@ -19,9 +24,9 @@ export const storeMetadata = async (data: HypercertMetadata, targetClient?: NFTS
 };
 
 //TODO handle returned errors from gateway
-export const getMetadata = async (cid: string): Promise<HypercertMetadata | null> => {
-  const nftStorageGatewayLink = NFT_STORAGE_IPFS_GATEWAY.replace("{cid}", cid);
-  console.log(`Getting metadata ${cid} at ${nftStorageGatewayLink}`);
+export const getMetadata = async (cidOrIpfsUri: string): Promise<HypercertMetadata | null> => {
+  const nftStorageGatewayLink = getIpfsGatewayUri(cidOrIpfsUri);
+  console.log(`Getting metadata ${cidOrIpfsUri} at ${nftStorageGatewayLink}`);
 
   return axios
     .get<HypercertMetadata>(nftStorageGatewayLink)
@@ -42,9 +47,9 @@ export const storeData = async (data: any, targetClient?: NFTStorage): Promise<C
 };
 
 //TODO risky method?
-export const getData = async (cid: string) => {
-  const nftStorageGatewayLink = NFT_STORAGE_IPFS_GATEWAY.replace("{cid}", cid);
-  console.log(`Getting  data ${cid} at ${nftStorageGatewayLink}`);
+export const getData = async (cidOrIpfsUri: string) => {
+  const nftStorageGatewayLink = getIpfsGatewayUri(cidOrIpfsUri);
+  console.log(`Getting  data ${cidOrIpfsUri} at ${nftStorageGatewayLink}`);
   return axios
     .get(nftStorageGatewayLink)
     .then((result) => result.data)
