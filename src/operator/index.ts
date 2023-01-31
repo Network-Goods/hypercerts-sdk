@@ -6,9 +6,9 @@ import axios from "axios";
 // NFT.Storage
 const NFT_STORAGE_TOKEN = process.env.NFT_STORAGE_TOKEN ?? "MISSING_TOKEN";
 
-const getIpfsGatewayUri = (cidOrIpfsUri: string) => {
+export const getIpfsGatewayUri = (cidOrIpfsUri: string) => {
   const NFT_STORAGE_IPFS_GATEWAY = "https://nftstorage.link/ipfs/{cid}";
-  const cid = cidOrIpfsUri.startsWith("ipfs://") ? cidOrIpfsUri.replace("ipfs://", "") : cidOrIpfsUri;
+  const cid = cidOrIpfsUri.replace("ipfs://", "");
   return NFT_STORAGE_IPFS_GATEWAY.replace("{cid}", cid);
 };
 
