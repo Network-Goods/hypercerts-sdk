@@ -1,4 +1,4 @@
-import * as SDK from "../src/index";
+import * as SDK from "../src/index.js";
 
 describe("Interface spec", () => {
   it("Exposes validation methods", async () => {
