@@ -4,6 +4,7 @@ import metadata from "./res/mockMetadata.json";
 import data from "./res/mockData.json";
 
 import { HypercertMetadata } from "../src/types/metadata.js";
+import { getIpfsGatewayUri } from "../src/operator";
 
 const mockMetadata: HypercertMetadata = metadata;
 const mockData: any = data;
@@ -38,5 +39,11 @@ describe("IPFS Client", () => {
     const data = await getData(mockDataCid);
 
     expect(data).to.deep.equal(mockData);
+  });
+
+  it("Removes ipfs:// prefix if present to get CID", () => {
+    const uriFromCid = getIpfsGatewayUri(mockDataCid);
+    const uriFromIpfsLink = getIpfsGatewayUri(`ipfs://${mockDataCid}`);
+    expect(uriFromCid).to.eq(uriFromIpfsLink);
   });
 });

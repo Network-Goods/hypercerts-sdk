@@ -1,5 +1,9 @@
 # Release notes
 
+## 0.0.18
+
+* Remove ipfs:// prefix when generating gateway uri and a URI is passed, instead of a cid
+
 ## 0.0.17
 
 * Update contracts
