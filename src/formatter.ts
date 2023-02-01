@@ -38,10 +38,10 @@ export const formatHypercertData = ({
   excludedImpactScope: string[];
   workScope: string[];
   excludedWorkScope: string[];
-  workTimeframeStart: Date;
-  workTimeframeEnd: Date;
-  impactTimeframeStart: Date;
-  impactTimeframeEnd: Date;
+  workTimeframeStart: number;
+  workTimeframeEnd: number;
+  impactTimeframeStart: number;
+  impactTimeframeEnd: number;
   contributors: `0x${string}`[];
   rights: string[];
   excludedRights: string[];
@@ -61,13 +61,17 @@ export const formatHypercertData = ({
     },
     impact_timeframe: {
       name: "Impact Timeframe",
-      value: [impactTimeframeStart.getTime() / 1000, impactTimeframeEnd.getTime() / 1000],
-      display_value: `${formatDate(impactTimeframeStart)} \u2192 ${formatDate(impactTimeframeEnd)}`,
+      value: [impactTimeframeStart, impactTimeframeEnd],
+      display_value: `${formatDate(new Date(impactTimeframeStart * 1000))} \u2192 ${formatDate(
+        new Date(impactTimeframeEnd * 1000),
+      )}`,
     },
     work_timeframe: {
       name: "Work Timeframe",
-      value: [workTimeframeStart.getTime() / 1000, workTimeframeEnd.getTime() / 1000],
-      display_value: `${formatDate(workTimeframeStart)} \u2192 ${formatDate(workTimeframeEnd)}`,
+      value: [workTimeframeStart, workTimeframeEnd],
+      display_value: `${formatDate(new Date(workTimeframeStart * 1000))} \u2192 ${formatDate(
+        new Date(workTimeframeEnd * 1000),
+      )}`,
     },
     rights: {
       name: "Rights",

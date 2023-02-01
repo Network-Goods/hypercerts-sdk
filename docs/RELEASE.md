@@ -1,5 +1,9 @@
 # Release notes
 
+## 0.0.20
+
+* Use numbers and not date for `formatHypercertData()` timeframes
+
 ## 0.0.19
 
 * Update to the most recent JSON format
