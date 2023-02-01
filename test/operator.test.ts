@@ -1,10 +1,10 @@
 import { expect, assert } from "chai";
 import { getData, getMetadata, storeData, storeMetadata } from "../src/index.js";
-import metadata from "./res/mockMetadata.json";
-import data from "./res/mockData.json";
+import metadata from "./res/mockMetadata.js";
+import data from "./res/mockData.js";
 
 import { HypercertMetadata } from "../src/types/metadata.js";
-import { getIpfsGatewayUri } from "../src/operator";
+import { getIpfsGatewayUri } from "../src/operator/index.js";
 
 const mockMetadata: HypercertMetadata = metadata;
 const mockData: any = data;
