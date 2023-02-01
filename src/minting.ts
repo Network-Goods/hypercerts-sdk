@@ -27,3 +27,9 @@ export const mintHypercertToken = async (
     console.log("Incorrect metadata");
   }
 };
+
+export const transferRestrictions = {
+  AllowAll: 0,
+  FromCreatorOnly: 1,
+  DisallowAll: 2,
+} as const;

@@ -18,9 +18,17 @@ export interface HypercertMetadata {
    */
   description: string;
   /**
+   * An url pointing to the external website of the project
+   */
+  external_url?: string;
+  /**
    * A URI pointing to a resource with mime type image/* representing the asset to which this token represents. Consider making any images at a width between 320 and 1080 pixels and aspect ratio between 1.91:1 and 4:5 inclusive.
    */
   image: string;
+  /**
+   * The version of Hypercert schema used to describe this hypercert
+   */
+  version?: string;
   /**
    * Describes the asset to which this token represents
    */
@@ -29,5 +37,10 @@ export interface HypercertMetadata {
    * A CID pointer to the merke tree proof json on ipfs
    */
   allowList?: string;
-  properties: HypercertClaimdata;
+  properties: {
+    trait_type?: string;
+    value?: string;
+    [k: string]: unknown;
+  }[];
+  hypercert?: HypercertClaimdata;
 }
