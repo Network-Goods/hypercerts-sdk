@@ -12,22 +12,56 @@ export interface HypercertClaimdata {
   /**
    * Scopes of impact
    */
-  impactScopes: string;
+  impact_scope: {
+    name?: string;
+    value?: string[];
+    display_value?: string;
+    [k: string]: unknown;
+  };
   /**
    * Scopes of work
    */
-  workScopes: string;
+  work_scope: {
+    name?: string;
+    value?: string[];
+    display_value?: string;
+    [k: string]: unknown;
+  };
   /**
-   * Describes the asset to which this token represents
+   * Scopes of work
    */
-  impactTimeframe: number[];
+  work_timeframe: {
+    name?: string;
+    value?: number[];
+    display_value?: string;
+    [k: string]: unknown;
+  };
   /**
-   * Describes the asset to which this token represents
+   * Scopes of work
    */
-  workTimeframe: number[];
+  impact_timeframe: {
+    name?: string;
+    value?: number[];
+    display_value?: string;
+    [k: string]: unknown;
+  };
   /**
-   * Describes the asset to which this token represents
+   * Scopes of work
    */
-  contributors: string[];
+  contributors: {
+    name?: string;
+    value?: string[];
+    display_value?: string;
+    [k: string]: unknown;
+  };
+  /**
+   * Scopes of work
+   */
+  rights?: {
+    name?: string;
+    value?: string[];
+    display_value?: string;
+    [k: string]: unknown;
+  };
   [k: string]: unknown;
 }
