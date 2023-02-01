@@ -17,6 +17,12 @@
             "type": "string"
           }
         },
+        "excludes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
         "display_value": {
           "type": "string"
         }
@@ -30,6 +36,12 @@
           "type": "string"
         },
         "value": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "excludes": {
           "type": "array",
           "items": {
             "type": "string"
@@ -102,6 +114,12 @@
           "type": "string"
         },
         "value": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "excludes": {
           "type": "array",
           "items": {
             "type": "string"

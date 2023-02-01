@@ -17,13 +17,16 @@ export const formatHypercertData = ({
   version,
   properties,
   impactScope,
+  excludedImpactScope = [],
   workScope,
+  excludedWorkScope = [],
   workTimeframeStart,
   workTimeframeEnd,
   impactTimeframeStart,
   impactTimeframeEnd,
   contributors,
   rights,
+  excludedRights,
 }: {
   name: string;
   description: string;
@@ -32,23 +35,28 @@ export const formatHypercertData = ({
   version: string;
   properties: { trait_type: string; value: string }[];
   impactScope: string[];
+  excludedImpactScope: string[];
   workScope: string[];
+  excludedWorkScope: string[];
   workTimeframeStart: Date;
   workTimeframeEnd: Date;
   impactTimeframeStart: Date;
   impactTimeframeEnd: Date;
   contributors: `0x${string}`[];
   rights: string[];
+  excludedRights: string[];
 }): { data: HypercertMetadata | null; valid: boolean; errors: Record<string, string> } => {
   const claimData: HypercertClaimdata = {
     impact_scope: {
       name: "Impact Scope",
       value: impactScope,
+      excludes: excludedImpactScope,
       display_value: impactScope.join(", "),
     },
     work_scope: {
       name: "Work Scope",
       value: workScope,
+      excludes: excludedWorkScope,
       display_value: workScope.join(", "),
     },
     impact_timeframe: {
@@ -64,6 +72,7 @@ export const formatHypercertData = ({
     rights: {
       name: "Rights",
       value: rights,
+      excludes: excludedRights,
       display_value: rights.join(", "),
     },
     contributors: {

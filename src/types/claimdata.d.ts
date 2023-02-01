@@ -15,6 +15,7 @@ export interface HypercertClaimdata {
   impact_scope: {
     name?: string;
     value?: string[];
+    excludes?: string[];
     display_value?: string;
     [k: string]: unknown;
   };
@@ -24,6 +25,7 @@ export interface HypercertClaimdata {
   work_scope: {
     name?: string;
     value?: string[];
+    excludes?: string[];
     display_value?: string;
     [k: string]: unknown;
   };
@@ -60,6 +62,7 @@ export interface HypercertClaimdata {
   rights?: {
     name?: string;
     value?: string[];
+    excludes?: string[];
     display_value?: string;
     [k: string]: unknown;
   };

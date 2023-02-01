@@ -1,5 +1,10 @@
 # Release notes
 
+## 0.0.19
+
+* Update to the most recent JSON format
+* Add `formatHypercertData()` function, which formats to the specified JSON format and validates input in the process
+
 ## 0.0.18
 
 * Remove ipfs:// prefix when generating gateway uri and a URI is passed, instead of a cid
