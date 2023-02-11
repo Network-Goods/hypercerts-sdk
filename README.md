@@ -1,3 +1,7 @@
+**DEPRECATED** - Please refer to [https://github.com/Network-Goods/hypercerts](https://github.com/Network-Goods/hypercerts) for the latest
+
+---
+
 # Hypercert SDK
 
 ## Set up
